@@ -15,6 +15,7 @@ namespace KiwiSuite\Entity\Entity;
 use KiwiSuite\Entity\Exception\EmptyException;
 use KiwiSuite\Entity\Exception\InvalidPropertyException;
 use KiwiSuite\Entity\Helper\DefinitionName;
+use KiwiSuite\Entity\Type\Type;
 
 class Entity implements EntityInterface
 {
@@ -68,7 +69,7 @@ class Entity implements EntityInterface
      */
     private function setValue(string $name, $value): void
     {
-        $this->data[$name] = $value;
+        $this->data[$name] = Type::create($value, $this->definitionCollection->get($name)->getType());
     }
 
     /**
