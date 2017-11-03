@@ -1,4 +1,14 @@
 <?php
+/**
+ * kiwi-suite/entity (https://github.com/kiwi-suite/entity)
+ *
+ * @package kiwi-suite/entity
+ * @see https://github.com/kiwi-suite/entity
+ * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @license MIT License
+ */
+
+declare(strict_types=1);
 namespace KiwiSuite\Entity\Type;
 
 use KiwiSuite\Entity\Exception\InvalidTypeException;
@@ -28,7 +38,7 @@ final class Type
     public static function initialize(SubManagerInterface $subManager = null)
     {
         if (self::$type instanceof Type) {
-            throw new ServiceNotCreatedException(sprintf("'%s' already initialized", Type::class));
+            throw new ServiceNotCreatedException(\sprintf("'%s' already initialized", Type::class));
         }
 
         self::$type = new Type($subManager);
@@ -66,7 +76,7 @@ final class Type
         if ($this->isPhpType($type)) {
             $functionName = "\is_" . $type;
             if (!$functionName($value)) {
-                throw new InvalidTypeException(sprintf("'%s' is not a '%s'", gettype($value), $type));
+                throw new InvalidTypeException(\sprintf("'%s' is not a '%s'", \gettype($value), $type));
             }
 
             return $value;
@@ -77,11 +87,11 @@ final class Type
         }
 
         if (!($this->subManager instanceof SubManagerInterface)) {
-            throw new ServiceNotCreatedException(sprintf("'%s' was not initialized with a SubManager", Type::class));
+            throw new ServiceNotCreatedException(\sprintf("'%s' was not initialized with a SubManager", Type::class));
         }
 
         if (!$this->subManager->has($type)) {
-            throw new ServiceNotCreatedException(sprintf("Can't find type '%s'", $type));
+            throw new ServiceNotCreatedException(\sprintf("Can't find type '%s'", $type));
         }
 
         return $this->subManager->build($type, ['value' => $value]);

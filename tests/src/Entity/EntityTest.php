@@ -89,8 +89,8 @@ class EntityTest extends TestCase
             [],
             new DefinitionCollection([
                 new Definition("stringTest", "string"),
-                new Definition("optional", "string",  true, false, true),
-                new Definition("optionalNullAble", "string",  false, false, true),
+                new Definition("optional", "string", true, false, true),
+                new Definition("optionalNullAble", "string", false, false, true),
             ])
         );
 

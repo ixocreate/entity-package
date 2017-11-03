@@ -101,7 +101,7 @@ class Entity implements EntityInterface
             return true;
         }
 
-        if (in_array($definition->getName(), $this->markedOptional)) {
+        if (\in_array($definition->getName(), $this->markedOptional)) {
             return false;
         }
 

@@ -1,4 +1,14 @@
 <?php
+/**
+ * kiwi-suite/entity (https://github.com/kiwi-suite/entity)
+ *
+ * @package kiwi-suite/entity
+ * @see https://github.com/kiwi-suite/entity
+ * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @license MIT License
+ */
+
+declare(strict_types=1);
 namespace KiwiSuiteTest\Entity\Type;
 
 use KiwiSuite\Entity\Exception\InvalidTypeException;
@@ -26,7 +36,7 @@ class TypeTest extends TestCase
             new ServiceManagerConfig([
                 'factories' => [
                     Type\Email::class => SimpleTypeFactory::class,
-                ]
+                ],
             ]),
             TypeInterface::class
         );
@@ -39,7 +49,8 @@ class TypeTest extends TestCase
         $array = ["array"];
         $bool = true;
         $float = 1.1;
-        $callable = function () {};
+        $callable = function () {
+        };
 
         $this->assertSame($integer, Type::create($integer, TypeInterface::TYPE_INT));
         $this->assertSame($string, Type::create($string, TypeInterface::TYPE_STRING));
@@ -50,7 +61,6 @@ class TypeTest extends TestCase
 
         $this->expectException(InvalidTypeException::class);
         Type::create($integer, TypeInterface::TYPE_STRING);
-
     }
 
     /**

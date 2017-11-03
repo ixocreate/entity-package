@@ -1,4 +1,13 @@
 <?php
+/**
+ * kiwi-suite/entity (https://github.com/kiwi-suite/entity)
+ *
+ * @package kiwi-suite/entity
+ * @see https://github.com/kiwi-suite/entity
+ * @copyright Copyright (c) 2010 - 2017 kiwi suite GmbH
+ * @license MIT License
+ */
+
 declare(strict_types=1);
 namespace KiwiSuite\Entity\Type\Factory;
 
@@ -18,11 +27,11 @@ class SimpleTypeFactory implements FactoryInterface
     public function __invoke(ServiceManagerInterface $container, $requestedName, array $options = null)
     {
         if (empty($options) || !\is_array($options)) {
-            throw new InvalidArgumentException(sprintf("'%s' can only be received through the build method with valid options", $requestedName));
+            throw new InvalidArgumentException(\sprintf("'%s' can only be received through the build method with valid options", $requestedName));
         }
 
         if (!\array_key_exists('value', $options)) {
-            throw  new InvalidArgumentException(sprintf("'%s' was build without a 'value' option", $requestedName));
+            throw  new InvalidArgumentException(\sprintf("'%s' was build without a 'value' option", $requestedName));
         }
 
         return new $requestedName($options['value']);
