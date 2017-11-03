@@ -26,6 +26,7 @@ final class DefinitionName
 
     /**
      * DefinitionName constructor.
+     * @codeCoverageIgnore
      */
     private function __construct()
     {
