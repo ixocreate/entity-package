@@ -89,12 +89,20 @@ class EntityTest extends TestCase
             [],
             new DefinitionCollection([
                 new Definition("stringTest", "string"),
+                new Definition("optional", "string",  true, false, true),
+                new Definition("optionalNullAble", "string",  false, false, true),
             ])
         );
 
         $this->assertTrue($entity->hasProperty("stringTest"));
         $this->assertTrue($entity->hasProperty("string_test"));
         $this->assertFalse($entity->hasProperty("missing_prop"));
+
+        $this->assertFalse($entity->hasProperty("optional"));
+        $this->assertTrue($entity->hasProperty("optional", true));
+
+        $this->assertFalse($entity->hasProperty("optionalNullAble"));
+        $this->assertTrue($entity->hasProperty("optionalNullAble", true));
     }
 
     public function testGet()
@@ -183,6 +191,7 @@ class EntityTest extends TestCase
             ],
             new DefinitionCollection([
                 new Definition("stringTest", "string"),
+                new Definition("optional", "string", true, true, true),
             ])
         );
         $entity = $entity->with("stringTest", "newString");
@@ -190,6 +199,9 @@ class EntityTest extends TestCase
 
         $entity = $entity->with("string_test", "anotherString");
         $this->assertEquals("anotherString", $entity->stringTest);
+
+        $entity = $entity->with("optional", "optionalProperty");
+        $this->assertEquals("optionalProperty", $entity->optional);
     }
 
     public function testWithInvalidProperty()

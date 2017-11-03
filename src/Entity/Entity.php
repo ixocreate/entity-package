@@ -30,6 +30,11 @@ class Entity implements EntityInterface
     private $definitionCollection;
 
     /**
+     * @var array
+     */
+    private $markedOptional = [];
+
+    /**
      * Entity constructor.
      * @param array $data
      * @param DefinitionCollection $definitionCollection
@@ -57,6 +62,10 @@ class Entity implements EntityInterface
 
         /** @var Definition $definition */
         foreach ($this->definitionCollection as $definition) {
+            if ($definition->isOptional() && !\array_key_exists($definition->getName(), $this->data)) {
+                $this->markedOptional[] = $definition->getName();
+                continue;
+            }
             if (!$definition->isNullAble() && !\array_key_exists($definition->getName(), $this->data)) {
                 throw new EmptyException(\sprintf("Not nullable property '%s' not set", $definition->getName()));
             }
@@ -74,11 +83,29 @@ class Entity implements EntityInterface
 
     /**
      * @param string $name
+     * @param bool $includeOptional
      * @return bool
      */
-    public function hasProperty(string $name): bool
+    public function hasProperty(string $name, bool $includeOptional = false): bool
     {
-        return $this->definitionCollection->has(DefinitionName::filter($name));
+        $name = DefinitionName::filter($name);
+        $hasDefinition = $this->definitionCollection->has($name);
+
+        if (!$hasDefinition || $includeOptional === true) {
+            return $hasDefinition;
+        }
+
+        /** @var Definition $definition */
+        $definition = $this->definitionCollection->get($name);
+        if (!$definition->isOptional()) {
+            return true;
+        }
+
+        if (in_array($definition->getName(), $this->markedOptional)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -152,7 +179,7 @@ class Entity implements EntityInterface
     public function with(string $name, $value): self
     {
         $name = DefinitionName::filter($name);
-        if (!$this->definitionCollection->has($name)) {
+        if (!$this->definitionCollection->has($name, true)) {
             throw new InvalidPropertyException(\sprintf("Invalid property '%s'", $name));
         }
 

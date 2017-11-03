@@ -16,19 +16,21 @@ use PHPUnit\Framework\TestCase;
 
 class DefinitionTest extends TestCase
 {
-    public function testDefintion()
+    public function testDefinition()
     {
         $definition = new Definition(
             "test_string",
             "string",
             false,
-            false
+            false,
+            true
         );
 
         $this->assertEquals("testString", $definition->getName());
         $this->assertEquals("string", $definition->getType());
         $this->assertFalse($definition->isNullAble());
         $this->assertFalse($definition->isPublic());
+        $this->assertTrue($definition->isOptional());
     }
 
     public function testDefaultDefinitionValues()
@@ -40,5 +42,6 @@ class DefinitionTest extends TestCase
 
         $this->assertTrue($definition->isNullAble());
         $this->assertTrue($definition->isPublic());
+        $this->assertFalse($definition->isOptional());
     }
 }

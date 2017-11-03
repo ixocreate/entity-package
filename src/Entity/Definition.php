@@ -35,6 +35,10 @@ final class Definition
      * @var bool
      */
     private $public;
+    /**
+     * @var bool
+     */
+    private $optional;
 
     /**
      * Definition constructor.
@@ -42,13 +46,15 @@ final class Definition
      * @param string $type
      * @param bool $nullAble
      * @param bool $public
+     * @param bool $optional
      */
-    public function __construct(string $name, string $type, bool $nullAble = true, bool $public = true)
+    public function __construct(string $name, string $type, bool $nullAble = true, bool $public = true, bool $optional = false)
     {
         $this->name = DefinitionName::filter($name);
         $this->type = $type;
         $this->nullAble = $nullAble;
         $this->public = $public;
+        $this->optional = $optional;
     }
 
     /**
@@ -81,5 +87,13 @@ final class Definition
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isOptional(): bool
+    {
+        return $this->optional;
     }
 }
