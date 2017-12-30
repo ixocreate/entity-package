@@ -11,6 +11,7 @@
 declare(strict_types=1);
 namespace KiwiSuite\Entity\Type\Type;
 
+use KiwiSuite\Entity\Type\Convert\Convert;
 use KiwiSuite\Entity\Type\TypeInterface;
 
 final class Email implements TypeInterface
@@ -30,7 +31,27 @@ final class Email implements TypeInterface
         return $this->email;
     }
 
-    public function __toString()
+    /**
+     * @return string
+     */
+    public static function getInternalType() : string
+    {
+        return TypeInterface::TYPE_STRING;
+    }
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public static function convertToInternalType($value)
+    {
+        return Convert::convertString($value);
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
     {
         return $this->getValue();
     }

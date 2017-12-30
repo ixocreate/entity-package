@@ -13,6 +13,7 @@ namespace KiwiSuite\Entity\Type;
 
 use KiwiSuite\Entity\Exception\InvalidTypeException;
 use KiwiSuite\Entity\Exception\ServiceNotCreatedException;
+use KiwiSuite\Entity\Type\Convert\Convert;
 use KiwiSuite\ServiceManager\SubManager\SubManagerInterface;
 
 final class Type
@@ -73,6 +74,8 @@ final class Type
      */
     private function doCreate($value, string $type)
     {
+        $value = $this->convertValue($value, $type);
+
         if ($this->isPhpType($type)) {
             $functionName = "\is_" . $type;
             if (!$functionName($value)) {
@@ -104,5 +107,39 @@ final class Type
     private function isPhpType($type): bool
     {
         return \in_array($type, [TypeInterface::TYPE_STRING, TypeInterface::TYPE_ARRAY, TypeInterface::TYPE_BOOL, TypeInterface::TYPE_CALLABLE, TypeInterface::TYPE_FLOAT, TypeInterface::TYPE_INT]);
+    }
+
+    /**
+     * @param $value
+     * @param string $type
+     * @return mixed
+     */
+    private function convertValue($value, string $type)
+    {
+        if ($value instanceof $type) {
+            return $value;
+        }
+
+        if (!$this->isPhpType($type) && \class_exists($type)) {
+            $implements = \class_implements($type);
+            if ($implements !== false && \in_array(TypeInterface::class, $implements)) {
+                $type = \call_user_func($type . '::getInternalType');
+            }
+        }
+
+        switch ($type) {
+            case TypeInterface::TYPE_STRING:
+            case TypeInterface::TYPE_BOOL:
+            case TypeInterface::TYPE_FLOAT:
+            case TypeInterface::TYPE_INT:
+                $value = \call_user_func(Convert::class . "::convert" . \ucfirst($type), $value);
+                break;
+            case TypeInterface::TYPE_ARRAY:
+            case TypeInterface::TYPE_CALLABLE:
+            default:
+                break;
+        }
+
+        return $value;
     }
 }
