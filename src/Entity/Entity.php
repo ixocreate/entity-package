@@ -51,7 +51,9 @@ class Entity implements EntityInterface
     private function applyData(array $data): void
     {
         foreach ($data as $name => $value) {
-            $name = DefinitionName::filter($name);
+            if (!$this->definitionCollection->has($name)) {
+                $name = DefinitionName::filter($name);
+            }
 
             if (!$this->definitionCollection->has($name)) {
                 throw new InvalidPropertyException(\sprintf("Invalid property '%s'", $name));
@@ -88,7 +90,10 @@ class Entity implements EntityInterface
      */
     public function hasProperty(string $name, bool $includeOptional = false): bool
     {
-        $name = DefinitionName::filter($name);
+        if (!$this->definitionCollection->has($name)) {
+            $name = DefinitionName::filter($name);
+        }
+
         $hasDefinition = $this->definitionCollection->has($name);
 
         if (!$hasDefinition || $includeOptional === true) {
@@ -114,7 +119,10 @@ class Entity implements EntityInterface
      */
     public function __isset(string $name): bool
     {
-        $name = DefinitionName::filter($name);
+        if (!$this->definitionCollection->has($name)) {
+            $name = DefinitionName::filter($name);
+        }
+
         if (!$this->hasProperty($name)) {
             throw new InvalidPropertyException(
                 \sprintf("Invalid property '%s' in '%s'", $name, \get_class($this))
@@ -129,7 +137,10 @@ class Entity implements EntityInterface
      */
     public function __get(string $name)
     {
-        $name = DefinitionName::filter($name);
+        if (!$this->definitionCollection->has($name)) {
+            $name = DefinitionName::filter($name);
+        }
+
         if (!$this->hasProperty($name)) {
             throw new InvalidPropertyException(
                 \sprintf("Invalid property '%s' in '%s'", $name, \get_class($this))
@@ -178,8 +189,11 @@ class Entity implements EntityInterface
      */
     public function with(string $name, $value): self
     {
-        $name = DefinitionName::filter($name);
-        if (!$this->definitionCollection->has($name, true)) {
+        if (!$this->definitionCollection->has($name)) {
+            $name = DefinitionName::filter($name);
+        }
+
+        if (!$this->definitionCollection->has($name)) {
             throw new InvalidPropertyException(\sprintf("Invalid property '%s'", $name));
         }
 

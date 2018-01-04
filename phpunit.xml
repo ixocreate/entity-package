@@ -17,7 +17,7 @@
 >
     <testsuites>
         <testsuite name="kiwi test suite">
-            <directory>./tests</directory>
+            <directory>./tests/src</directory>
         </testsuite>
     </testsuites>
     <filter>

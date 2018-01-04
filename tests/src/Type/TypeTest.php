@@ -11,10 +11,11 @@
 declare(strict_types=1);
 namespace KiwiSuiteTest\Entity\Type;
 
+use KiwiSuite\Entity\Exception\InvalidTypeException;
 use KiwiSuite\Entity\Exception\ServiceNotCreatedException;
-use KiwiSuite\Entity\Type\Factory\SimpleTypeFactory;
 use KiwiSuite\Entity\Type\Type;
 use KiwiSuite\Entity\Type\TypeInterface;
+use KiwiSuite\ServiceManager\Factory\AutowireFactory;
 use KiwiSuite\ServiceManager\ServiceManager;
 use KiwiSuite\ServiceManager\ServiceManagerConfig;
 use KiwiSuite\ServiceManager\ServiceManagerSetup;
@@ -34,7 +35,7 @@ class TypeTest extends TestCase
             new ServiceManager(new ServiceManagerConfig([]), new ServiceManagerSetup()),
             new ServiceManagerConfig([
                 'factories' => [
-                    Type\Email::class => SimpleTypeFactory::class,
+                    Type\Email::class => AutowireFactory::class,
                 ],
             ]),
             TypeInterface::class
@@ -57,6 +58,9 @@ class TypeTest extends TestCase
         $this->assertSame($bool, Type::create($bool, TypeInterface::TYPE_BOOL));
         $this->assertSame($float, Type::create($float, TypeInterface::TYPE_FLOAT));
         $this->assertSame($callable, Type::create($callable, TypeInterface::TYPE_CALLABLE));
+
+        $this->expectException(InvalidTypeException::class);
+        Type::create($integer, TypeInterface::TYPE_ARRAY);
     }
 
     /**

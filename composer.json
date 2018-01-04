@@ -15,7 +15,8 @@
     "require-dev": {
         "phpunit/phpunit": "^6.0.6",
         "friendsofphp/php-cs-fixer": "^2.0",
-        "kiwi-suite/servicemanager": "^0.0.1"
+        "kiwi-suite/servicemanager": "^0",
+        "kiwi-suite/application": "^0"
     },
     "autoload": {
         "psr-4": {
@@ -24,7 +25,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "KiwiSuiteTest\\Model\\": "tests/src/"
+            "KiwiSuiteTest\\Entity\\": "tests/src/",
+            "KiwiSuiteMisc\\Entity\\": "tests/misc/"
         }
     }
 }

@@ -106,7 +106,17 @@ final class Type
      */
     private function isPhpType($type): bool
     {
-        return \in_array($type, [TypeInterface::TYPE_STRING, TypeInterface::TYPE_ARRAY, TypeInterface::TYPE_BOOL, TypeInterface::TYPE_CALLABLE, TypeInterface::TYPE_FLOAT, TypeInterface::TYPE_INT]);
+        return \in_array(
+            $type,
+            [
+                TypeInterface::TYPE_STRING,
+                TypeInterface::TYPE_ARRAY,
+                TypeInterface::TYPE_BOOL,
+                TypeInterface::TYPE_CALLABLE,
+                TypeInterface::TYPE_FLOAT,
+                TypeInterface::TYPE_INT,
+            ]
+        );
     }
 
     /**
