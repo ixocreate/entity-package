@@ -19,7 +19,7 @@ class DefinitionTest extends TestCase
     public function testDefinition()
     {
         $definition = new Definition(
-            "test_string",
+            "testString",
             "string",
             false,
             false,
@@ -30,18 +30,16 @@ class DefinitionTest extends TestCase
         $this->assertEquals("string", $definition->getType());
         $this->assertFalse($definition->isNullAble());
         $this->assertFalse($definition->isPublic());
-        $this->assertTrue($definition->isOptional());
     }
 
     public function testDefaultDefinitionValues()
     {
         $definition = new Definition(
-            "test_string",
+            "testString",
             "string"
         );
 
         $this->assertTrue($definition->isNullAble());
         $this->assertTrue($definition->isPublic());
-        $this->assertFalse($definition->isOptional());
     }
 }

@@ -15,20 +15,29 @@ use KiwiSuite\Entity\Entity\Definition;
 use KiwiSuite\Entity\Entity\DefinitionCollection;
 use KiwiSuite\Entity\Entity\Entity;
 use KiwiSuite\Entity\Entity\EntityCollection;
+use KiwiSuite\Entity\Entity\EntityInterface;
+use KiwiSuite\Entity\Entity\EntityTrait;
 use PHPUnit\Framework\TestCase;
 
 class EntityCollectionTest extends TestCase
 {
     public function testEntityCollection()
     {
-        $entity = new Entity(
-            [
-                'name' => 'test',
-            ],
-            new DefinitionCollection([
-                new Definition("name", "string", false),
-            ])
-        );
+        $data = [
+            'name' => 'test',
+        ];
+        $entity = new class($data) implements EntityInterface {
+            use EntityTrait;
+
+            private $name;
+
+            private function createDefinitions() : DefinitionCollection
+            {
+                return new DefinitionCollection([
+                      new Definition("name", "string", false),
+                  ]);
+            }
+        };
 
         $entityCollection = new EntityCollection([$entity]);
 

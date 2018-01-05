@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace KiwiSuite\Entity\Entity;
 
-use KiwiSuite\Entity\Helper\DefinitionName;
-
 final class Definition
 {
     /**
@@ -35,10 +33,16 @@ final class Definition
      * @var bool
      */
     private $public;
+
     /**
      * @var bool
      */
-    private $optional;
+    private $hasDefault;
+
+    /**
+     * @var mixed
+     */
+    private $default;
 
     /**
      * Definition constructor.
@@ -46,15 +50,24 @@ final class Definition
      * @param string $type
      * @param bool $nullAble
      * @param bool $public
-     * @param bool $optional
+     * @param bool $hasDefault
+     * @param null $default
      */
-    public function __construct(string $name, string $type, bool $nullAble = true, bool $public = true, bool $optional = false)
-    {
-        $this->name = DefinitionName::filter($name);
+    public function __construct(
+        string $name,
+        string $type,
+        bool $nullAble = true,
+        bool $public = true,
+        bool $hasDefault = false,
+        $default = null
+    ) {
+        //TODO check name
+        $this->name = $name;
         $this->type = $type;
         $this->nullAble = $nullAble;
         $this->public = $public;
-        $this->optional = $optional;
+        $this->hasDefault = $hasDefault;
+        $this->default = $default;
     }
 
     /**
@@ -92,8 +105,16 @@ final class Definition
     /**
      * @return bool
      */
-    public function isOptional(): bool
+    public function hasDefault(): bool
     {
-        return $this->optional;
+        return $this->hasDefault;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDefault()
+    {
+        return $this->default;
     }
 }

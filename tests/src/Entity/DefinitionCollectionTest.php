@@ -20,7 +20,7 @@ class DefinitionCollectionTest extends TestCase
     public function testCollection()
     {
         $definition = new Definition(
-            "test_string",
+            "testString",
             "string",
             false,
             false
