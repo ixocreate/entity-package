@@ -156,7 +156,7 @@ trait EntityTrait
     /**
      * @param string $name
      * @param $value
-     * @return self
+     * @return EntityInterface
      */
     public function with(string $name, $value) : EntityInterface
     {
