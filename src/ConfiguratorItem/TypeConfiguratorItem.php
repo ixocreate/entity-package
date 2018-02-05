@@ -11,15 +11,9 @@
 declare(strict_types=1);
 namespace KiwiSuite\Entity\ConfiguratorItem;
 
-use KiwiSuite\Application\ApplicationConfig;
-use KiwiSuite\Application\Bootstrap\BootstrapInterface;
-use KiwiSuite\Application\Bootstrap\BootstrapRegistry;
 use KiwiSuite\Application\ConfiguratorItem\ConfiguratorItemInterface;
-use KiwiSuite\Application\IncludeHelper;
-use KiwiSuite\Entity\Type\Factory\TypeSubManagerFactory;
 use KiwiSuite\Entity\Type\Type\EmailType;
 use KiwiSuite\Entity\Type\TypeServiceManagerConfig;
-use KiwiSuite\Entity\Type\TypeSubManager;
 use KiwiSuite\ServiceManager\ServiceManagerConfigurator;
 
 class TypeConfiguratorItem implements ConfiguratorItemInterface
