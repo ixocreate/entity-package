@@ -17,6 +17,7 @@ use KiwiSuite\Application\Bootstrap\BootstrapRegistry;
 use KiwiSuite\Application\ConfiguratorItem\ConfiguratorItemInterface;
 use KiwiSuite\Application\IncludeHelper;
 use KiwiSuite\Entity\Type\Factory\TypeSubManagerFactory;
+use KiwiSuite\Entity\Type\Type\EmailType;
 use KiwiSuite\Entity\Type\TypeServiceManagerConfig;
 use KiwiSuite\Entity\Type\TypeSubManager;
 use KiwiSuite\ServiceManager\ServiceManagerConfigurator;
@@ -28,7 +29,10 @@ class TypeConfiguratorItem implements ConfiguratorItemInterface
      */
     public function getConfigurator()
     {
-        return new ServiceManagerConfigurator(TypeServiceManagerConfig::class);
+        $serviceManagerConfigurator = new ServiceManagerConfigurator(TypeServiceManagerConfig::class);
+        $serviceManagerConfigurator->addFactory(EmailType::class);
+
+        return $serviceManagerConfigurator;
     }
 
     /**
