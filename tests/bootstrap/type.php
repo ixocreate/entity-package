@@ -10,4 +10,4 @@
 
 declare(strict_types=1);
 /** @var \KiwiSuite\ServiceManager\ServiceManagerConfigurator $typeConfigurator */
-$typeConfigurator->addFactory(\KiwiSuite\Entity\Type\Type\Email::class);
+$typeConfigurator->addFactory(\KiwiSuiteMisc\Entity\MockType::class);

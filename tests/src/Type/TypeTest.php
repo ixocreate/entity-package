@@ -20,6 +20,7 @@ use KiwiSuite\ServiceManager\ServiceManager;
 use KiwiSuite\ServiceManager\ServiceManagerConfig;
 use KiwiSuite\ServiceManager\ServiceManagerSetup;
 use KiwiSuite\ServiceManager\SubManager\SubManager;
+use KiwiSuiteMisc\Entity\MockType;
 use PHPUnit\Framework\TestCase;
 
 class TypeTest extends TestCase
@@ -35,7 +36,7 @@ class TypeTest extends TestCase
             new ServiceManager(new ServiceManagerConfig([]), new ServiceManagerSetup()),
             new ServiceManagerConfig([
                 'factories' => [
-                    Type\Email::class => AutowireFactory::class,
+                    MockType::class => AutowireFactory::class,
                 ],
             ]),
             TypeInterface::class
@@ -73,20 +74,20 @@ class TypeTest extends TestCase
         $integer = 1 ;
         $this->assertSame($integer, Type::create($integer, TypeInterface::TYPE_INT));
 
-        $email = Type::create("noreply@kiwi-suite.com", Type\Email::class);
-        $this->assertInstanceOf(Type\Email::class, $email);
+        $email = Type::create("noreply@kiwi-suite.com", MockType::class);
+        $this->assertInstanceOf(MockType::class, $email);
         $this->assertSame("noreply@kiwi-suite.com", $email->getValue());
 
 
-        $email1 = new Type\Email("noreply@kiwi-suite.com");
-        $email1Check = Type::create($email1, Type\Email::class);
+        $email1 = new MockType("noreply@kiwi-suite.com");
+        $email1Check = Type::create($email1, MockType::class);
         $this->assertSame($email1, $email1Check);
     }
 
     public function testSubManagerNotSet()
     {
         $this->expectException(ServiceNotCreatedException::class);
-        Type::create("noreply@kiwi-suite.com", Type\Email::class);
+        Type::create("noreply@kiwi-suite.com", MockType::class);
     }
 
     /**
