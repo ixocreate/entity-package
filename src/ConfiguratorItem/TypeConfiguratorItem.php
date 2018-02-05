@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace KiwiSuite\Entity\ConfiguratorItem;
 
 use KiwiSuite\Application\ConfiguratorItem\ConfiguratorItemInterface;
-use KiwiSuite\Entity\Type\Type\EmailType;
 use KiwiSuite\Entity\Type\TypeServiceManagerConfig;
 use KiwiSuite\ServiceManager\ServiceManagerConfigurator;
 
@@ -24,7 +23,6 @@ class TypeConfiguratorItem implements ConfiguratorItemInterface
     public function getConfigurator()
     {
         $serviceManagerConfigurator = new ServiceManagerConfigurator(TypeServiceManagerConfig::class);
-        $serviceManagerConfigurator->addFactory(EmailType::class);
 
         return $serviceManagerConfigurator;
     }
