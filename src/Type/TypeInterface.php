@@ -26,11 +26,6 @@ interface TypeInterface
     public function getValue();
 
     /**
-     * @return string
-     */
-    public static function getInternalType() : string;
-
-    /**
      * @param $value
      * @return mixed
      */

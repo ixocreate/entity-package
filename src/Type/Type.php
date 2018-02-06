@@ -133,7 +133,7 @@ final class Type
         if (!$this->isPhpType($type) && \class_exists($type)) {
             $implements = \class_implements($type);
             if ($implements !== false && \in_array(TypeInterface::class, $implements)) {
-                $type = \call_user_func($type . '::getInternalType');
+                return \call_user_func($type . '::convertToInternalType', $value);
             }
         }
 
