@@ -30,7 +30,7 @@ class TypeConfiguratorItem implements ConfiguratorItemInterface
     /**
      * @return string
      */
-    public function getConfiguratorName(): string
+    public function getVariableName(): string
     {
         return 'typeConfigurator';
     }
@@ -38,7 +38,7 @@ class TypeConfiguratorItem implements ConfiguratorItemInterface
     /**
      * @return string
      */
-    public function getConfiguratorFileName(): string
+    public function getFileName(): string
     {
         return 'type.php';
     }

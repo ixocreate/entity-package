@@ -13,6 +13,7 @@ namespace KiwiSuite\Entity\Bootstrap;
 
 use KiwiSuite\Application\Bootstrap\BootstrapInterface;
 use KiwiSuite\Application\ConfiguratorItem\ConfiguratorRegistry;
+use KiwiSuite\Application\ConfiguratorItem\ServiceManagerConfiguratorItem;
 use KiwiSuite\Application\Service\ServiceRegistry;
 use KiwiSuite\Entity\ConfiguratorItem\TypeConfiguratorItem;
 use KiwiSuite\Entity\Type\Factory\TypeSubManagerFactory;
@@ -28,7 +29,8 @@ final class EntityBootstrap implements BootstrapInterface
      */
     public function configure(ConfiguratorRegistry $configuratorRegistry): void
     {
-        $configuratorRegistry->getConfigurator("serviceManagerConfigurator")->addSubManager(TypeSubManager::class, TypeSubManagerFactory::class);
+        $configuratorRegistry->get(ServiceManagerConfiguratorItem::class)
+            ->addSubManager(TypeSubManager::class, TypeSubManagerFactory::class);
     }
 
     /**
