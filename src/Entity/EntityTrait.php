@@ -14,6 +14,7 @@ namespace KiwiSuite\Entity\Entity;
 use KiwiSuite\Entity\Exception\EmptyException;
 use KiwiSuite\Entity\Exception\InvalidPropertyException;
 use KiwiSuite\Entity\Type\Type;
+use KiwiSuite\Entity\Type\TypeInterface;
 
 trait EntityTrait
 {
@@ -153,6 +154,18 @@ trait EntityTrait
         return $data;
     }
 
+    public function toPublicArray(): array
+    {
+        $data = [];
+        foreach ($this->getDefinitions() as $definition) {
+            if (!$definition->isPublic()) {
+                continue;
+            }
+            $name = $definition->getName();
+            $data[$name] = $this->{$name};
+        }
+        return $data;
+    }
     /**
      * @param string $name
      * @param $value

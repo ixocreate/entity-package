@@ -52,4 +52,9 @@ interface EntityInterface
      * @return array
      */
     public function toArray(): array;
+
+    /**
+     * @return array
+     */
+    public function toPublicArray(): array;
 }
