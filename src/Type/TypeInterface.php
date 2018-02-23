@@ -11,7 +11,7 @@
 declare(strict_types=1);
 namespace KiwiSuite\Entity\Type;
 
-interface TypeInterface
+interface TypeInterface extends \JsonSerializable
 {
     const TYPE_STRING = 'string';
     const TYPE_INT = 'int';
