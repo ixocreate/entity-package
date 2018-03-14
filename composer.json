@@ -17,6 +17,7 @@
         "friendsofphp/php-cs-fixer": "^2.0",
         "kiwi-suite/servicemanager": "dev-develop",
         "kiwi-suite/application": "dev-develop",
+        "kiwi-suite/contract": "dev-develop",
         "php-coveralls/php-coveralls": "^2.0"
     },
     "autoload": {

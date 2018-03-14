@@ -11,10 +11,10 @@
 declare(strict_types=1);
 namespace KiwiSuite\Entity\Type;
 
+use KiwiSuite\Contract\ServiceManager\SubManager\SubManagerInterface;
 use KiwiSuite\Entity\Exception\InvalidTypeException;
 use KiwiSuite\Entity\Exception\ServiceNotCreatedException;
 use KiwiSuite\Entity\Type\Convert\Convert;
-use KiwiSuite\ServiceManager\SubManager\SubManagerInterface;
 
 final class Type
 {

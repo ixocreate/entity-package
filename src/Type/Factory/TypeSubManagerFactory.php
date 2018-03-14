@@ -11,12 +11,12 @@
 declare(strict_types=1);
 namespace KiwiSuite\Entity\Type\Factory;
 
+use KiwiSuite\Contract\ServiceManager\ServiceManagerInterface;
+use KiwiSuite\Contract\ServiceManager\SubManager\SubManagerFactoryInterface;
+use KiwiSuite\Contract\ServiceManager\SubManager\SubManagerInterface;
 use KiwiSuite\Entity\Type\TypeInterface;
 use KiwiSuite\Entity\Type\TypeServiceManagerConfig;
 use KiwiSuite\Entity\Type\TypeSubManager;
-use KiwiSuite\ServiceManager\ServiceManagerInterface;
-use KiwiSuite\ServiceManager\SubManager\SubManagerFactoryInterface;
-use KiwiSuite\ServiceManager\SubManager\SubManagerInterface;
 
 class TypeSubManagerFactory implements SubManagerFactoryInterface
 {
