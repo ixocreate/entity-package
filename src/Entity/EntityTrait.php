@@ -41,12 +41,8 @@ trait EntityTrait
 
     /**
      * @return DefinitionCollection
-     * @codeCoverageIgnore
      */
-    private function createDefinitions() : DefinitionCollection
-    {
-        return new DefinitionCollection([]);
-    }
+    abstract protected function createDefinitions() : DefinitionCollection;
 
     /**
      * @param array $data
@@ -96,7 +92,11 @@ trait EntityTrait
             $this->{$name} = null;
             return;
         }
-        $this->{$name} = Type::create($value, $this->getDefinitions()->get($name)->getType());
+        $this->{$name} = Type::create(
+            $value,
+            $this->getDefinitions()->get($name)->getType(),
+            $this->getDefinitions()->get($name)->getOptions()
+        );
     }
 
     /**

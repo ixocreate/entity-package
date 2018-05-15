@@ -36,6 +36,9 @@ final class Type
         $this->subManager = $subManager;
     }
 
+    /**
+     * @param SubManagerInterface|null $subManager
+     */
     public static function initialize(SubManagerInterface $subManager = null)
     {
         if (self::$type instanceof Type) {
@@ -60,19 +63,21 @@ final class Type
     /**
      * @param $value
      * @param string $type
+     * @param array $options
      * @return mixed
      */
-    public static function create($value, string $type)
+    public static function create($value, string $type, array $options = [])
     {
-        return self::getInstance()->doCreate($value, $type);
+        return self::getInstance()->doCreate($value, $type, $options);
     }
 
     /**
      * @param $value
      * @param string $type
+     * @param array $options
      * @return mixed
      */
-    private function doCreate($value, string $type)
+    private function doCreate($value, string $type, array $options = [])
     {
         $value = $this->convertValue($value, $type);
 
@@ -97,7 +102,7 @@ final class Type
             throw new ServiceNotCreatedException(\sprintf("Can't find type '%s'", $type));
         }
 
-        return $this->subManager->build($type, ['value' => $value]);
+        return $this->subManager->build($type, ['value' => $value, 'options' => $options]);
     }
 
     /**

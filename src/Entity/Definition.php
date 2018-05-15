@@ -45,6 +45,11 @@ final class Definition
     private $default;
 
     /**
+     * @var array
+     */
+    private $options;
+
+    /**
      * Definition constructor.
      * @param string $name
      * @param string $type
@@ -52,6 +57,7 @@ final class Definition
      * @param bool $public
      * @param bool $hasDefault
      * @param null $default
+     * @param array $options
      */
     public function __construct(
         string $name,
@@ -59,7 +65,8 @@ final class Definition
         bool $nullAble = true,
         bool $public = true,
         bool $hasDefault = false,
-        $default = null
+        $default = null,
+        array $options = []
     ) {
         //TODO check name
         $this->name = $name;
@@ -68,6 +75,7 @@ final class Definition
         $this->public = $public;
         $this->hasDefault = $hasDefault;
         $this->default = $default;
+        $this->options = $options;
     }
 
     /**
@@ -115,6 +123,17 @@ final class Definition
      */
     public function getDefault()
     {
+        if (is_callable($this->default)) {
+            return ($this->default)();
+        }
         return $this->default;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOptions(): array
+    {
+        return $this->options;
     }
 }
