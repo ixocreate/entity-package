@@ -181,4 +181,9 @@ trait EntityTrait
 
         return new static($data);
     }
+
+    public function jsonSerialize()
+    {
+        return $this->toPublicArray();
+    }
 }

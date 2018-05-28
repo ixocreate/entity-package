@@ -11,7 +11,7 @@
 declare(strict_types=1);
 namespace KiwiSuite\Entity\Entity;
 
-interface EntityInterface
+interface EntityInterface extends \JsonSerializable
 {
     /**
      * @return DefinitionCollection
