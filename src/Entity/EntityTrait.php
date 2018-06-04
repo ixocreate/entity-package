@@ -20,7 +20,7 @@ trait EntityTrait
     /**
      * @var DefinitionCollection
      */
-    private $definitionCollection;
+    private static $definitionCollection;
 
     public function __construct(array $data)
     {
@@ -30,19 +30,19 @@ trait EntityTrait
     /**
      * @return DefinitionCollection
      */
-    public function getDefinitions() : DefinitionCollection
+    public static function getDefinitions() : DefinitionCollection
     {
-        if ($this->definitionCollection === null) {
-            $this->definitionCollection = $this->createDefinitions();
+        if (self::$definitionCollection === null) {
+            self::$definitionCollection = self::createDefinitions();
         }
 
-        return $this->definitionCollection;
+        return self::$definitionCollection;
     }
 
     /**
      * @return DefinitionCollection
      */
-    abstract protected function createDefinitions() : DefinitionCollection;
+    abstract protected static function createDefinitions() : DefinitionCollection;
 
     /**
      * @param array $data
@@ -52,7 +52,7 @@ trait EntityTrait
         $variables = [];
 
         foreach ($data as $name => $value) {
-            if (!$this->getDefinitions()->has($name)) {
+            if (!self::getDefinitions()->has($name)) {
                 throw new InvalidPropertyException(\sprintf("Invalid property '%s'", $name));
             }
 
@@ -62,7 +62,7 @@ trait EntityTrait
         }
 
         /** @var Definition $definition */
-        foreach ($this->getDefinitions() as $definition) {
+        foreach (self::getDefinitions() as $definition) {
             if (\in_array($definition->getName(), $variables)) {
                 continue;
             }
@@ -88,14 +88,14 @@ trait EntityTrait
      */
     private function setValue(string $name, $value) : void
     {
-        if ($value === null && $this->getDefinitions()->get($name)->isNullAble()) {
+        if ($value === null && self::getDefinitions()->get($name)->isNullAble()) {
             $this->{$name} = null;
             return;
         }
         $this->{$name} = Type::create(
             $value,
-            $this->getDefinitions()->get($name)->getType(),
-            $this->getDefinitions()->get($name)->getOptions()
+            self::getDefinitions()->get($name)->getType(),
+            self::getDefinitions()->get($name)->getOptions()
         );
     }
 
@@ -114,7 +114,7 @@ trait EntityTrait
      */
     public function __get(string $name)
     {
-        if (!$this->getDefinitions()->has($name)) {
+        if (!self::getDefinitions()->has($name)) {
             throw new InvalidPropertyException(
                 \sprintf("Invalid property '%s' in '%s'", $name, \get_class($this))
             );
@@ -146,7 +146,7 @@ trait EntityTrait
     public function toArray() : array
     {
         $data = [];
-        foreach ($this->getDefinitions() as $definition) {
+        foreach (self::getDefinitions() as $definition) {
             $name = $definition->getName();
             $data[$name] = $this->{$name};
         }
@@ -156,7 +156,7 @@ trait EntityTrait
     public function toPublicArray(): array
     {
         $data = [];
-        foreach ($this->getDefinitions() as $definition) {
+        foreach (self::getDefinitions() as $definition) {
             if (!$definition->isPublic()) {
                 continue;
             }
@@ -172,7 +172,7 @@ trait EntityTrait
      */
     public function with(string $name, $value) : EntityInterface
     {
-        if (!$this->getDefinitions()->has($name)) {
+        if (!self::getDefinitions()->has($name)) {
             throw new InvalidPropertyException(\sprintf("Invalid property '%s'", $name));
         }
 

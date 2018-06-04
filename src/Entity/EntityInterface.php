@@ -16,7 +16,7 @@ interface EntityInterface extends \JsonSerializable
     /**
      * @return DefinitionCollection
      */
-    public function getDefinitions(): DefinitionCollection;
+    public static function getDefinitions(): DefinitionCollection;
 
     /**
      * @param string $name
