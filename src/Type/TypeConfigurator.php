@@ -28,7 +28,7 @@ final class TypeConfigurator implements ConfiguratorInterface
      */
     public function __construct()
     {
-        $this->subManagerConfigurator = new SubManagerConfigurator(TypeSubManager::class, TypeInterface::class);
+        $this->subManagerConfigurator = new SubManagerConfigurator(TypeSubManager::class, \KiwiSuite\Contract\Type\TypeInterface::class);
     }
 
     /**

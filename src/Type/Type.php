@@ -102,7 +102,10 @@ final class Type
             throw new ServiceNotCreatedException(\sprintf("Can't find type '%s'", $type));
         }
 
-        return $this->subManager->build($type, ['value' => $value, 'options' => $options]);
+        /** @var \KiwiSuite\Contract\Type\TypeInterface $typeObject */
+        $typeObject = $this->subManager->get($type);
+        return $typeObject->create($value, $options);
+
     }
 
     /**
@@ -114,12 +117,12 @@ final class Type
         return \in_array(
             $type,
             [
-                TypeInterface::TYPE_STRING,
-                TypeInterface::TYPE_ARRAY,
-                TypeInterface::TYPE_BOOL,
-                TypeInterface::TYPE_CALLABLE,
-                TypeInterface::TYPE_FLOAT,
-                TypeInterface::TYPE_INT,
+                \KiwiSuite\Contract\Type\TypeInterface::TYPE_STRING,
+                \KiwiSuite\Contract\Type\TypeInterface::TYPE_ARRAY,
+                \KiwiSuite\Contract\Type\TypeInterface::TYPE_BOOL,
+                \KiwiSuite\Contract\Type\TypeInterface::TYPE_CALLABLE,
+                \KiwiSuite\Contract\Type\TypeInterface::TYPE_FLOAT,
+                \KiwiSuite\Contract\Type\TypeInterface::TYPE_INT,
             ]
         );
     }
@@ -136,21 +139,18 @@ final class Type
         }
 
         if (!$this->isPhpType($type) && \class_exists($type)) {
-            $implements = \class_implements($type);
-            if ($implements !== false && \in_array(TypeInterface::class, $implements)) {
-                return \call_user_func($type . '::convertToInternalType', $value);
-            }
+            return $value;
         }
 
         switch ($type) {
-            case TypeInterface::TYPE_STRING:
-            case TypeInterface::TYPE_BOOL:
-            case TypeInterface::TYPE_FLOAT:
-            case TypeInterface::TYPE_INT:
+            case \KiwiSuite\Contract\Type\TypeInterface::TYPE_STRING:
+            case \KiwiSuite\Contract\Type\TypeInterface::TYPE_BOOL:
+            case \KiwiSuite\Contract\Type\TypeInterface::TYPE_FLOAT:
+            case \KiwiSuite\Contract\Type\TypeInterface::TYPE_INT:
                 $value = \call_user_func(Convert::class . "::convert" . \ucfirst($type), $value);
                 break;
-            case TypeInterface::TYPE_ARRAY:
-            case TypeInterface::TYPE_CALLABLE:
+            case \KiwiSuite\Contract\Type\TypeInterface::TYPE_ARRAY:
+            case \KiwiSuite\Contract\Type\TypeInterface::TYPE_CALLABLE:
             default:
                 break;
         }

@@ -11,23 +11,12 @@
 declare(strict_types=1);
 namespace KiwiSuite\Entity\Type;
 
-interface TypeInterface extends \JsonSerializable
+/**
+ * Interface TypeInterface
+ * @package KiwiSuite\Entity\Type
+ * @deprecated
+ */
+interface TypeInterface extends \KiwiSuite\Contract\Type\TypeInterface
 {
-    const TYPE_STRING = 'string';
-    const TYPE_INT = 'int';
-    const TYPE_FLOAT = 'float';
-    const TYPE_BOOL = 'bool';
-    const TYPE_ARRAY = 'array';
-    const TYPE_CALLABLE = 'callable';
 
-    /**
-     * @return mixed
-     */
-    public function getValue();
-
-    /**
-     * @param $value
-     * @return mixed
-     */
-    public static function convertToInternalType($value);
 }
