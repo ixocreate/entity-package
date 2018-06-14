@@ -23,8 +23,9 @@ abstract class AbstractType implements \KiwiSuite\Contract\Type\TypeInterface
     public function create($value, array $options = []): TypeInterface
     {
         $type = clone $this;
-        $type->value = $this->transform($value);
         $type->options = $options;
+        $type->value = $type->transform($value);
+
 
         return $type;
     }
