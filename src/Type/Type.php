@@ -72,6 +72,15 @@ final class Type
     }
 
     /**
+     * @param string $type
+     * @return \KiwiSuite\Contract\Type\TypeInterface
+     */
+    public static function get(string $type): \KiwiSuite\Contract\Type\TypeInterface
+    {
+        return self::getInstance()->doGet($type);
+    }
+
+    /**
      * @param $value
      * @param string $type
      * @param array $options
@@ -94,6 +103,18 @@ final class Type
             return $value;
         }
 
+        /** @var \KiwiSuite\Contract\Type\TypeInterface $typeObject */
+        $typeObject = $this->doGet($type);
+        return $typeObject->create($value, $options);
+
+    }
+
+    /**
+     * @param string $type
+     * @return \KiwiSuite\Contract\Type\TypeInterface
+     */
+    private function doGet(string $type): \KiwiSuite\Contract\Type\TypeInterface
+    {
         if (!($this->subManager instanceof SubManagerInterface)) {
             throw new ServiceNotCreatedException(\sprintf("'%s' was not initialized with a SubManager", Type::class));
         }
@@ -103,9 +124,7 @@ final class Type
         }
 
         /** @var \KiwiSuite\Contract\Type\TypeInterface $typeObject */
-        $typeObject = $this->subManager->get($type);
-        return $typeObject->create($value, $options);
-
+        return $this->subManager->get($type);
     }
 
     /**

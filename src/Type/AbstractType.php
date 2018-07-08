@@ -74,7 +74,9 @@ abstract class AbstractType implements \KiwiSuite\Contract\Type\TypeInterface
 
     public function __debugInfo()
     {
-        return (string) $this;
+        return [
+            'value' => (string) $this
+        ];
     }
 
     public function jsonSerialize()
