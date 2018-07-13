@@ -17,6 +17,7 @@ class EntityCollection extends AbstractCollection
 {
     public function __construct(array $items = [], $callbackKeys = null)
     {
+        $items = array_values($items);
         $items = (function (EntityInterface ...$entity) {
             return $entity;
         })(...$items);
