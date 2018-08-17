@@ -3,7 +3,7 @@
  * kiwi-suite/entity (https://github.com/kiwi-suite/entity)
  *
  * @package kiwi-suite/entity
- * @see https://github.com/kiwi-suite/entity
+ * @link https://github.com/kiwi-suite/entity
  * @copyright Copyright (c) 2010 - 2018 kiwi suite GmbH
  * @license MIT License
  */
@@ -11,14 +11,13 @@
 declare(strict_types=1);
 namespace KiwiSuiteTest\Entity\Entity;
 
+use KiwiSuite\Contract\Type\TypeInterface;
 use KiwiSuite\Entity\Entity\Definition;
 use KiwiSuite\Entity\Entity\DefinitionCollection;
-use KiwiSuite\Entity\Entity\Entity;
 use KiwiSuite\Entity\Entity\EntityInterface;
 use KiwiSuite\Entity\Entity\EntityTrait;
 use KiwiSuite\Entity\Exception\EmptyException;
 use KiwiSuite\Entity\Exception\InvalidPropertyException;
-use KiwiSuite\Entity\Type\TypeInterface;
 use PHPUnit\Framework\TestCase;
 
 class EntityTraitTest extends TestCase
@@ -38,7 +37,7 @@ class EntityTraitTest extends TestCase
 
             private $category;
 
-            private function createDefinitions() : DefinitionCollection
+            protected static function createDefinitions() : DefinitionCollection
             {
                 return new DefinitionCollection([
                     new Definition("name", TypeInterface::TYPE_STRING, false),
@@ -71,6 +70,11 @@ class EntityTraitTest extends TestCase
 
         new class(['test' => 'test']) implements EntityInterface {
             use EntityTrait;
+
+            protected static function createDefinitions() : DefinitionCollection
+            {
+                return new DefinitionCollection([]);
+            }
         };
     }
 
@@ -83,7 +87,7 @@ class EntityTraitTest extends TestCase
 
             private $name;
 
-            private function createDefinitions() : DefinitionCollection
+            protected static function createDefinitions() : DefinitionCollection
             {
                 return new DefinitionCollection([
                     new Definition("name", TypeInterface::TYPE_STRING, false),
@@ -98,6 +102,11 @@ class EntityTraitTest extends TestCase
 
         $mock = new class([]) implements EntityInterface {
             use EntityTrait;
+
+            protected static function createDefinitions() : DefinitionCollection
+            {
+                return new DefinitionCollection([]);
+            }
         };
 
         $mock->test = 1;
@@ -109,6 +118,11 @@ class EntityTraitTest extends TestCase
 
         $mock = new class([]) implements EntityInterface {
             use EntityTrait;
+
+            protected static function createDefinitions() : DefinitionCollection
+            {
+                return new DefinitionCollection([]);
+            }
         };
 
         unset($mock->test);
@@ -120,6 +134,11 @@ class EntityTraitTest extends TestCase
 
         $mock = new class([]) implements EntityInterface {
             use EntityTrait;
+
+            protected static function createDefinitions() : DefinitionCollection
+            {
+                return new DefinitionCollection([]);
+            }
         };
 
         $mock->test;
@@ -131,6 +150,11 @@ class EntityTraitTest extends TestCase
 
         $mock = new class([]) implements EntityInterface {
             use EntityTrait;
+
+            protected static function createDefinitions() : DefinitionCollection
+            {
+                return new DefinitionCollection([]);
+            }
         };
 
         $mock->with("test", "test");

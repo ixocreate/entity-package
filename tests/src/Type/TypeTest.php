@@ -3,7 +3,7 @@
  * kiwi-suite/entity (https://github.com/kiwi-suite/entity)
  *
  * @package kiwi-suite/entity
- * @see https://github.com/kiwi-suite/entity
+ * @link https://github.com/kiwi-suite/entity
  * @copyright Copyright (c) 2010 - 2018 kiwi suite GmbH
  * @license MIT License
  */
@@ -11,13 +11,14 @@
 declare(strict_types=1);
 namespace KiwiSuiteTest\Entity\Type;
 
+use KiwiSuite\Contract\Type\TypeInterface;
 use KiwiSuite\Entity\Exception\InvalidTypeException;
 use KiwiSuite\Entity\Exception\ServiceNotCreatedException;
 use KiwiSuite\Entity\Type\Type;
-use KiwiSuite\Entity\Type\TypeInterface;
 use KiwiSuite\ServiceManager\Factory\AutowireFactory;
 use KiwiSuite\ServiceManager\ServiceManager;
 use KiwiSuite\ServiceManager\ServiceManagerConfig;
+use KiwiSuite\ServiceManager\ServiceManagerConfigurator;
 use KiwiSuite\ServiceManager\ServiceManagerSetup;
 use KiwiSuite\ServiceManager\SubManager\SubManager;
 use KiwiSuiteMisc\Entity\MockType;
@@ -32,13 +33,12 @@ class TypeTest extends TestCase
 
     public function setUp()
     {
+        $serviceManagerConfigurator = new ServiceManagerConfigurator();
+        $serviceManagerConfigurator->addFactory(MockType::class, AutowireFactory::class);
+
         $this->subManager = new SubManager(
-            new ServiceManager(new ServiceManagerConfig([]), new ServiceManagerSetup()),
-            new ServiceManagerConfig([
-                'factories' => [
-                    MockType::class => AutowireFactory::class,
-                ],
-            ]),
+            new ServiceManager(new ServiceManagerConfig(new ServiceManagerConfigurator()), new ServiceManagerSetup()),
+            new ServiceManagerConfig($serviceManagerConfigurator),
             TypeInterface::class
         );
     }

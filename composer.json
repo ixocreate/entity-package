@@ -8,6 +8,8 @@
             "name": "Thomas Payer"
         }
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": "^7.1",
         "zendframework/zend-filter": "^2.7"

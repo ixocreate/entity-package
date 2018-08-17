@@ -3,7 +3,7 @@
  * kiwi-suite/entity (https://github.com/kiwi-suite/entity)
  *
  * @package kiwi-suite/entity
- * @see https://github.com/kiwi-suite/entity
+ * @link https://github.com/kiwi-suite/entity
  * @copyright Copyright (c) 2010 - 2018 kiwi suite GmbH
  * @license MIT License
  */
@@ -123,7 +123,7 @@ final class Definition
      */
     public function getDefault()
     {
-        if (is_callable($this->default)) {
+        if (\is_callable($this->default)) {
             return ($this->default)();
         }
         return $this->default;
