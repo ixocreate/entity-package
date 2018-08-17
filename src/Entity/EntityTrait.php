@@ -3,7 +3,7 @@
  * kiwi-suite/entity (https://github.com/kiwi-suite/entity)
  *
  * @package kiwi-suite/entity
- * @see https://github.com/kiwi-suite/entity
+ * @link https://github.com/kiwi-suite/entity
  * @copyright Copyright (c) 2010 - 2018 kiwi suite GmbH
  * @license MIT License
  */
@@ -182,8 +182,52 @@ trait EntityTrait
         return new static($data);
     }
 
+    /**
+     * @return array
+     */
     public function jsonSerialize()
     {
         return $this->toPublicArray();
+    }
+
+    /**
+     * @param $offset
+     * @return bool
+     */
+    public function offsetExists($offset)
+    {
+        return isset($this->{$offset});
+    }
+
+    /**
+     * @param $offset
+     * @return mixed
+     */
+    public function offsetGet($offset)
+    {
+        if (!self::getDefinitions()->has($offset)) {
+            throw new InvalidPropertyException(
+                \sprintf("Invalid property '%s' in '%s'", $offset, \get_class($this))
+            );
+        }
+
+        return $this->{$offset};
+    }
+
+    /**
+     * @param $offset
+     * @param $value
+     */
+    public function offsetSet($offset, $value)
+    {
+        throw new \BadMethodCallException(\sprintf("offsetSet() is disabled in '%s'", \get_class($this)));
+    }
+
+    /**
+     * @param $offset
+     */
+    public function offsetUnset($offset)
+    {
+        throw new \BadMethodCallException(\sprintf("offsetUnset() is disabled in '%s'", \get_class($this)));
     }
 }
