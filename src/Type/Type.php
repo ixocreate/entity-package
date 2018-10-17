@@ -99,12 +99,13 @@ final class Type
             return $value;
         }
 
-        if ($value instanceof $type) {
+        /** @var \KiwiSuite\Contract\Type\TypeInterface $typeObject */
+        $typeObject = $this->doGet($type);
+
+        if ($value instanceof $typeObject) {
             return $value;
         }
 
-        /** @var \KiwiSuite\Contract\Type\TypeInterface $typeObject */
-        $typeObject = $this->doGet($type);
         return $typeObject->create($value, $options);
     }
 

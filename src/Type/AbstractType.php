@@ -11,9 +11,10 @@
 declare(strict_types=1);
 namespace KiwiSuite\Entity\Type;
 
+use KiwiSuite\Contract\ServiceManager\NamedServiceInterface;
 use KiwiSuite\Contract\Type\TypeInterface;
 
-abstract class AbstractType implements \KiwiSuite\Contract\Type\TypeInterface
+abstract class AbstractType implements TypeInterface, NamedServiceInterface
 {
     /**
      * @var mixed
