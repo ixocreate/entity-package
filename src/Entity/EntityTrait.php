@@ -129,7 +129,7 @@ trait EntityTrait
      */
     public function __set(string $name, $value) : void
     {
-        throw new \BadMethodCallException(\sprintf("__set() is disabled in '%s'", \get_class($this)));
+        throw new \BadMethodCallException(\sprintf("Cannot set '%s'. __set() is disabled in '%s'", $name, \get_class($this)));
     }
 
     /**
@@ -137,7 +137,7 @@ trait EntityTrait
      */
     public function __unset(string $name) : void
     {
-        throw new \BadMethodCallException(\sprintf("__unset() is disabled in '%s'", \get_class($this)));
+        throw new \BadMethodCallException(\sprintf("Cannot unset '%s'. __unset() is disabled in '%s'", $name, \get_class($this)));
     }
 
     /**
