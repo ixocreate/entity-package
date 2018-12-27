@@ -1,14 +1,12 @@
 <?php
 /**
- * kiwi-suite/entity (https://github.com/kiwi-suite/entity)
- *
- * @package kiwi-suite/entity
- * @link https://github.com/kiwi-suite/entity
- * @copyright Copyright (c) 2010 - 2018 kiwi suite GmbH
+ * @link https://github.com/ixocreate
+ * @copyright IXOCREATE GmbH
  * @license MIT License
  */
 
 declare(strict_types=1);
+
 namespace Ixocreate\Entity\Collection;
 
 interface CollectionExtractInterface
@@ -61,7 +59,6 @@ interface CollectionExtractInterface
      * @return CollectionInterface
      */
     public function nth(int $step, $offset = 0): CollectionInterface;
-
 
     /**
      * Shuffles and returns collection items
