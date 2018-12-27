@@ -9,7 +9,7 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Entity\Exception;
+namespace Ixocreate\Entity\Exception;
 
 class InvalidArgumentException extends \InvalidArgumentException
 {

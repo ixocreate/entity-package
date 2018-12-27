@@ -9,9 +9,9 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Entity\Entity;
+namespace Ixocreate\Entity\Entity;
 
-use KiwiSuite\Entity\Collection\AbstractCollection;
+use Ixocreate\Entity\Collection\AbstractCollection;
 
 class EntityCollection extends AbstractCollection
 {

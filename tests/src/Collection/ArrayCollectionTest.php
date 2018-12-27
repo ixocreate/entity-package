@@ -9,9 +9,9 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuiteTest\Entity\Collection;
+namespace IxocreateTest\Entity\Collection;
 
-use KiwiSuite\Entity\Collection\ArrayCollection;
+use Ixocreate\Entity\Collection\ArrayCollection;
 use PHPUnit\Framework\TestCase;
 
 class ArrayCollectionTest extends TestCase

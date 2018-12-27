@@ -9,12 +9,12 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Entity\Collection;
+namespace Ixocreate\Entity\Collection;
 
-use KiwiSuite\Entity\Exception\EmptyException;
-use KiwiSuite\Entity\Exception\InvalidCollectionException;
-use KiwiSuite\Entity\Exception\InvalidTypeException;
-use KiwiSuite\Entity\Exception\KeysNotMatchException;
+use Ixocreate\Entity\Exception\EmptyException;
+use Ixocreate\Entity\Exception\InvalidCollectionException;
+use Ixocreate\Entity\Exception\InvalidTypeException;
+use Ixocreate\Entity\Exception\KeysNotMatchException;
 
 abstract class AbstractCollection implements
     CollectionInterface,

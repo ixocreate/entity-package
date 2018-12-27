@@ -10,15 +10,15 @@
 
 declare(strict_types=1);
 
-namespace KiwiSuite\Entity;
+namespace Ixocreate\Entity;
 
-use KiwiSuite\Contract\Application\ConfiguratorRegistryInterface;
-use KiwiSuite\Contract\Application\PackageInterface;
-use KiwiSuite\Contract\Application\ServiceRegistryInterface;
-use KiwiSuite\Contract\ServiceManager\ServiceManagerInterface;
-use KiwiSuite\Entity\BootstrapItem\TypeBootstrapItem;
-use KiwiSuite\Entity\Type\Type;
-use KiwiSuite\Entity\Type\TypeSubManager;
+use Ixocreate\Contract\Application\ConfiguratorRegistryInterface;
+use Ixocreate\Contract\Application\PackageInterface;
+use Ixocreate\Contract\Application\ServiceRegistryInterface;
+use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Entity\BootstrapItem\TypeBootstrapItem;
+use Ixocreate\Entity\Type\Type;
+use Ixocreate\Entity\Type\TypeSubManager;
 
 final class Package implements PackageInterface
 {

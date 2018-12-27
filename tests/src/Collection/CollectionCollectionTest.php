@@ -9,10 +9,10 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuiteTest\Entity\Collection;
+namespace IxocreateTest\Entity\Collection;
 
-use KiwiSuite\Entity\Collection\ArrayCollection;
-use KiwiSuite\Entity\Collection\CollectionCollection;
+use Ixocreate\Entity\Collection\ArrayCollection;
+use Ixocreate\Entity\Collection\CollectionCollection;
 use PHPUnit\Framework\TestCase;
 
 class CollectionCollectionTest extends TestCase

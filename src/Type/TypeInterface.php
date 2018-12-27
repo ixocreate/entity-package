@@ -9,13 +9,13 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Entity\Type;
+namespace Ixocreate\Entity\Type;
 
 /**
  * Interface TypeInterface
- * @package KiwiSuite\Entity\Type
+ * @package Ixocreate\Entity\Type
  * @deprecated
  */
-interface TypeInterface extends \KiwiSuite\Contract\Type\TypeInterface
+interface TypeInterface extends \Ixocreate\Contract\Type\TypeInterface
 {
 }

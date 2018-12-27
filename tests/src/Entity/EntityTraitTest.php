@@ -9,15 +9,15 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuiteTest\Entity\Entity;
+namespace IxocreateTest\Entity\Entity;
 
-use KiwiSuite\Contract\Type\TypeInterface;
-use KiwiSuite\Entity\Entity\Definition;
-use KiwiSuite\Entity\Entity\DefinitionCollection;
-use KiwiSuite\Entity\Entity\EntityInterface;
-use KiwiSuite\Entity\Entity\EntityTrait;
-use KiwiSuite\Entity\Exception\EmptyException;
-use KiwiSuite\Entity\Exception\InvalidPropertyException;
+use Ixocreate\Contract\Type\TypeInterface;
+use Ixocreate\Entity\Entity\Definition;
+use Ixocreate\Entity\Entity\DefinitionCollection;
+use Ixocreate\Entity\Entity\EntityInterface;
+use Ixocreate\Entity\Entity\EntityTrait;
+use Ixocreate\Entity\Exception\EmptyException;
+use Ixocreate\Entity\Exception\InvalidPropertyException;
 use PHPUnit\Framework\TestCase;
 
 class EntityTraitTest extends TestCase

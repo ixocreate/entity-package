@@ -24,13 +24,13 @@
     },
     "autoload": {
         "psr-4": {
-            "KiwiSuite\\Entity\\": "src/"
+            "Ixocreate\\Entity\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "KiwiSuiteTest\\Entity\\": "tests/src/",
-            "KiwiSuiteMisc\\Entity\\": "tests/misc/"
+            "IxocreateTest\\Entity\\": "tests/src/",
+            "IxocreateMisc\\Entity\\": "tests/misc/"
         }
     }
 }

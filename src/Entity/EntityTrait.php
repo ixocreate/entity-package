@@ -9,11 +9,11 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Entity\Entity;
+namespace Ixocreate\Entity\Entity;
 
-use KiwiSuite\Entity\Exception\EmptyException;
-use KiwiSuite\Entity\Exception\InvalidPropertyException;
-use KiwiSuite\Entity\Type\Type;
+use Ixocreate\Entity\Exception\EmptyException;
+use Ixocreate\Entity\Exception\InvalidPropertyException;
+use Ixocreate\Entity\Type\Type;
 
 trait EntityTrait
 {

@@ -9,10 +9,10 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuiteTest\Entity\Entity;
+namespace IxocreateTest\Entity\Entity;
 
-use KiwiSuite\Entity\Entity\Definition;
-use KiwiSuite\Entity\Entity\DefinitionCollection;
+use Ixocreate\Entity\Entity\Definition;
+use Ixocreate\Entity\Entity\DefinitionCollection;
 use PHPUnit\Framework\TestCase;
 
 class DefinitionCollectionTest extends TestCase

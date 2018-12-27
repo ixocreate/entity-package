@@ -9,19 +9,19 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuiteTest\Entity\Type;
+namespace IxocreateTest\Entity\Type;
 
-use KiwiSuite\Contract\Type\TypeInterface;
-use KiwiSuite\Entity\Exception\InvalidTypeException;
-use KiwiSuite\Entity\Exception\ServiceNotCreatedException;
-use KiwiSuite\Entity\Type\Type;
-use KiwiSuite\ServiceManager\Factory\AutowireFactory;
-use KiwiSuite\ServiceManager\ServiceManager;
-use KiwiSuite\ServiceManager\ServiceManagerConfig;
-use KiwiSuite\ServiceManager\ServiceManagerConfigurator;
-use KiwiSuite\ServiceManager\ServiceManagerSetup;
-use KiwiSuite\ServiceManager\SubManager\SubManager;
-use KiwiSuiteMisc\Entity\MockType;
+use Ixocreate\Contract\Type\TypeInterface;
+use Ixocreate\Entity\Exception\InvalidTypeException;
+use Ixocreate\Entity\Exception\ServiceNotCreatedException;
+use Ixocreate\Entity\Type\Type;
+use Ixocreate\ServiceManager\Factory\AutowireFactory;
+use Ixocreate\ServiceManager\ServiceManager;
+use Ixocreate\ServiceManager\ServiceManagerConfig;
+use Ixocreate\ServiceManager\ServiceManagerConfigurator;
+use Ixocreate\ServiceManager\ServiceManagerSetup;
+use Ixocreate\ServiceManager\SubManager\SubManager;
+use IxocreateMisc\Entity\MockType;
 use PHPUnit\Framework\TestCase;
 
 class TypeTest extends TestCase

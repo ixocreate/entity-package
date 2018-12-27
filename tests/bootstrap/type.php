@@ -9,5 +9,5 @@
  */
 
 declare(strict_types=1);
-/** @var \KiwiSuite\ServiceManager\ServiceManagerConfigurator $typeConfigurator */
-$typeConfigurator->addFactory(\KiwiSuiteMisc\Entity\MockType::class);
+/** @var \Ixocreate\ServiceManager\ServiceManagerConfigurator $typeConfigurator */
+$typeConfigurator->addFactory(\IxocreateMisc\Entity\MockType::class);

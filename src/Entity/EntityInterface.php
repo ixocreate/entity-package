@@ -9,7 +9,7 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Entity\Entity;
+namespace Ixocreate\Entity\Entity;
 
 interface EntityInterface extends \JsonSerializable, \ArrayAccess
 {

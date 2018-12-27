@@ -9,9 +9,9 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuiteMisc\Entity;
+namespace IxocreateMisc\Entity;
 
-use KiwiSuite\Entity\Type\AbstractType;
+use Ixocreate\Entity\Type\AbstractType;
 
 final class MockType extends AbstractType
 {

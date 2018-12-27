@@ -9,15 +9,15 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuiteTest\Entity\Collection;
+namespace IxocreateTest\Entity\Collection;
 
-use KiwiSuite\Entity\Collection\ArrayCollection;
-use KiwiSuite\Entity\Collection\CollectionCollection;
-use KiwiSuite\Entity\Collection\CollectionInterface;
-use KiwiSuite\Entity\Exception\EmptyException;
-use KiwiSuite\Entity\Exception\InvalidCollectionException;
-use KiwiSuite\Entity\Exception\InvalidTypeException;
-use KiwiSuite\Entity\Exception\KeysNotMatchException;
+use Ixocreate\Entity\Collection\ArrayCollection;
+use Ixocreate\Entity\Collection\CollectionCollection;
+use Ixocreate\Entity\Collection\CollectionInterface;
+use Ixocreate\Entity\Exception\EmptyException;
+use Ixocreate\Entity\Exception\InvalidCollectionException;
+use Ixocreate\Entity\Exception\InvalidTypeException;
+use Ixocreate\Entity\Exception\KeysNotMatchException;
 use PHPUnit\Framework\TestCase;
 
 class AbstractCollectionTest extends TestCase

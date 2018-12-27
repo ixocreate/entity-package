@@ -9,9 +9,9 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Entity\Type;
+namespace Ixocreate\Entity\Type;
 
-use KiwiSuite\ServiceManager\SubManager\SubManager;
+use Ixocreate\ServiceManager\SubManager\SubManager;
 
 final class TypeSubManager extends SubManager
 {

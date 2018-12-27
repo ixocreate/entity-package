@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace KiwiSuite\Entity\Entity;
+namespace Ixocreate\Entity\Entity;
 
 final class Definition
 {

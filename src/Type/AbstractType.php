@@ -9,10 +9,10 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Entity\Type;
+namespace Ixocreate\Entity\Type;
 
-use KiwiSuite\Contract\ServiceManager\NamedServiceInterface;
-use KiwiSuite\Contract\Type\TypeInterface;
+use Ixocreate\Contract\ServiceManager\NamedServiceInterface;
+use Ixocreate\Contract\Type\TypeInterface;
 
 abstract class AbstractType implements TypeInterface, NamedServiceInterface
 {

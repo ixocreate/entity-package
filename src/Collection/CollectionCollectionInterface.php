@@ -9,7 +9,7 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Entity\Collection;
+namespace Ixocreate\Entity\Collection;
 
 interface CollectionCollectionInterface extends CollectionInterface
 {

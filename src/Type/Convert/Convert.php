@@ -9,7 +9,7 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Entity\Type\Convert;
+namespace Ixocreate\Entity\Type\Convert;
 
 class Convert
 {

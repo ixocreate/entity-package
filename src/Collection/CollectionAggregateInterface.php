@@ -9,9 +9,9 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Entity\Collection;
+namespace Ixocreate\Entity\Collection;
 
-use KiwiSuite\Entity\Exception\EmptyException;
+use Ixocreate\Entity\Exception\EmptyException;
 
 interface CollectionAggregateInterface
 {

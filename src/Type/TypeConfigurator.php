@@ -9,12 +9,12 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Entity\Type;
+namespace Ixocreate\Entity\Type;
 
-use KiwiSuite\Contract\Application\ConfiguratorInterface;
-use KiwiSuite\Contract\Application\ServiceRegistryInterface;
-use KiwiSuite\ServiceManager\Factory\AutowireFactory;
-use KiwiSuite\ServiceManager\SubManager\SubManagerConfigurator;
+use Ixocreate\Contract\Application\ConfiguratorInterface;
+use Ixocreate\Contract\Application\ServiceRegistryInterface;
+use Ixocreate\ServiceManager\Factory\AutowireFactory;
+use Ixocreate\ServiceManager\SubManager\SubManagerConfigurator;
 
 final class TypeConfigurator implements ConfiguratorInterface
 {
@@ -28,7 +28,7 @@ final class TypeConfigurator implements ConfiguratorInterface
      */
     public function __construct()
     {
-        $this->subManagerConfigurator = new SubManagerConfigurator(TypeSubManager::class, \KiwiSuite\Contract\Type\TypeInterface::class);
+        $this->subManagerConfigurator = new SubManagerConfigurator(TypeSubManager::class, \Ixocreate\Contract\Type\TypeInterface::class);
     }
 
     /**

@@ -9,9 +9,9 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuiteTest\Entity\Type\Convert;
+namespace IxocreateTest\Entity\Type\Convert;
 
-use KiwiSuite\Entity\Type\Convert\Convert;
+use Ixocreate\Entity\Type\Convert\Convert;
 use PHPUnit\Framework\TestCase;
 
 class ConvertTest extends TestCase

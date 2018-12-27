@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
-namespace KiwiSuite\Entity;
+namespace Ixocreate\Entity;
 
-use KiwiSuite\Entity\Type\TypeSubManager;
-use KiwiSuite\ServiceManager\ServiceManagerConfigurator;
+use Ixocreate\Entity\Type\TypeSubManager;
+use Ixocreate\ServiceManager\ServiceManagerConfigurator;
 
 /** @var ServiceManagerConfigurator $serviceManager */
 $serviceManager->addSubManager(TypeSubManager::class);

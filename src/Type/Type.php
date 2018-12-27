@@ -9,12 +9,12 @@
  */
 
 declare(strict_types=1);
-namespace KiwiSuite\Entity\Type;
+namespace Ixocreate\Entity\Type;
 
-use KiwiSuite\Contract\ServiceManager\SubManager\SubManagerInterface;
-use KiwiSuite\Entity\Exception\InvalidTypeException;
-use KiwiSuite\Entity\Exception\ServiceNotCreatedException;
-use KiwiSuite\Entity\Type\Convert\Convert;
+use Ixocreate\Contract\ServiceManager\SubManager\SubManagerInterface;
+use Ixocreate\Entity\Exception\InvalidTypeException;
+use Ixocreate\Entity\Exception\ServiceNotCreatedException;
+use Ixocreate\Entity\Type\Convert\Convert;
 
 final class Type
 {
@@ -73,9 +73,9 @@ final class Type
 
     /**
      * @param string $type
-     * @return \KiwiSuite\Contract\Type\TypeInterface
+     * @return \Ixocreate\Contract\Type\TypeInterface
      */
-    public static function get(string $type): \KiwiSuite\Contract\Type\TypeInterface
+    public static function get(string $type): \Ixocreate\Contract\Type\TypeInterface
     {
         return self::getInstance()->doGet($type);
     }
@@ -99,7 +99,7 @@ final class Type
             return $value;
         }
 
-        /** @var \KiwiSuite\Contract\Type\TypeInterface $typeObject */
+        /** @var \Ixocreate\Contract\Type\TypeInterface $typeObject */
         $typeObject = $this->doGet($type);
 
         if ($value instanceof $typeObject) {
@@ -111,9 +111,9 @@ final class Type
 
     /**
      * @param string $type
-     * @return \KiwiSuite\Contract\Type\TypeInterface
+     * @return \Ixocreate\Contract\Type\TypeInterface
      */
-    private function doGet(string $type): \KiwiSuite\Contract\Type\TypeInterface
+    private function doGet(string $type): \Ixocreate\Contract\Type\TypeInterface
     {
         if (!($this->subManager instanceof SubManagerInterface)) {
             throw new ServiceNotCreatedException(\sprintf("'%s' was not initialized with a SubManager", Type::class));
@@ -123,7 +123,7 @@ final class Type
             throw new ServiceNotCreatedException(\sprintf("Can't find type '%s'", $type));
         }
 
-        /** @var \KiwiSuite\Contract\Type\TypeInterface $typeObject */
+        /** @var \Ixocreate\Contract\Type\TypeInterface $typeObject */
         return $this->subManager->get($type);
     }
 
@@ -136,12 +136,12 @@ final class Type
         return \in_array(
             $type,
             [
-                \KiwiSuite\Contract\Type\TypeInterface::TYPE_STRING,
-                \KiwiSuite\Contract\Type\TypeInterface::TYPE_ARRAY,
-                \KiwiSuite\Contract\Type\TypeInterface::TYPE_BOOL,
-                \KiwiSuite\Contract\Type\TypeInterface::TYPE_CALLABLE,
-                \KiwiSuite\Contract\Type\TypeInterface::TYPE_FLOAT,
-                \KiwiSuite\Contract\Type\TypeInterface::TYPE_INT,
+                \Ixocreate\Contract\Type\TypeInterface::TYPE_STRING,
+                \Ixocreate\Contract\Type\TypeInterface::TYPE_ARRAY,
+                \Ixocreate\Contract\Type\TypeInterface::TYPE_BOOL,
+                \Ixocreate\Contract\Type\TypeInterface::TYPE_CALLABLE,
+                \Ixocreate\Contract\Type\TypeInterface::TYPE_FLOAT,
+                \Ixocreate\Contract\Type\TypeInterface::TYPE_INT,
             ]
         );
     }
@@ -162,14 +162,14 @@ final class Type
         }
 
         switch ($type) {
-            case \KiwiSuite\Contract\Type\TypeInterface::TYPE_STRING:
-            case \KiwiSuite\Contract\Type\TypeInterface::TYPE_BOOL:
-            case \KiwiSuite\Contract\Type\TypeInterface::TYPE_FLOAT:
-            case \KiwiSuite\Contract\Type\TypeInterface::TYPE_INT:
+            case \Ixocreate\Contract\Type\TypeInterface::TYPE_STRING:
+            case \Ixocreate\Contract\Type\TypeInterface::TYPE_BOOL:
+            case \Ixocreate\Contract\Type\TypeInterface::TYPE_FLOAT:
+            case \Ixocreate\Contract\Type\TypeInterface::TYPE_INT:
                 $value = \call_user_func(Convert::class . "::convert" . \ucfirst($type), $value);
                 break;
-            case \KiwiSuite\Contract\Type\TypeInterface::TYPE_ARRAY:
-            case \KiwiSuite\Contract\Type\TypeInterface::TYPE_CALLABLE:
+            case \Ixocreate\Contract\Type\TypeInterface::TYPE_ARRAY:
+            case \Ixocreate\Contract\Type\TypeInterface::TYPE_CALLABLE:
             default:
                 break;
         }
