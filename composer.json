@@ -12,9 +12,9 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.1",
-        "ixocreate/contract": "=1.0.0-alpha1",
-        "ixocreate/servicemanager": "=1.0.0-alpha1",
-        "ixocreate/application": "=1.0.0-alpha1",
+        "ixocreate/contract": "dev-develop",
+        "ixocreate/servicemanager": "dev-develop",
+        "ixocreate/application": "dev-develop",
         "zendframework/zend-filter": "^2.7"
     },
     "require-dev": {
