@@ -52,7 +52,7 @@ trait EntityTrait
 
         foreach ($data as $name => $value) {
             if (!self::getDefinitions()->has($name)) {
-                throw new InvalidPropertyException(\sprintf("Invalid property '%s'", $name));
+                throw new InvalidPropertyException(\sprintf("Invalid property '%s' in '%s'", $name, \get_class($this)));
             }
 
             $variables[] = $name;
@@ -61,7 +61,7 @@ trait EntityTrait
                 $this->setValue($name, $value);
             }
             catch (InvalidTypeException $exception) {
-                throw new InvalidTypeException(\sprintf("Invalid value type for '%s': ", $name) . $exception->getMessage());
+                throw new InvalidTypeException(\sprintf("Invalid value type for '%s' in '%s': ", $name, \get_class($this)) . $exception->getMessage());
             }
         }
 
