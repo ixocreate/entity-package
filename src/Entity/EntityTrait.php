@@ -11,6 +11,7 @@ namespace Ixocreate\Entity\Entity;
 
 use Ixocreate\Entity\Exception\EmptyException;
 use Ixocreate\Entity\Exception\InvalidPropertyException;
+use Ixocreate\Entity\Exception\InvalidTypeException;
 use Ixocreate\Entity\Type\Type;
 
 trait EntityTrait
@@ -56,7 +57,12 @@ trait EntityTrait
 
             $variables[] = $name;
 
-            $this->setValue($name, $value);
+            try {
+                $this->setValue($name, $value);
+            }
+            catch (InvalidTypeException $exception) {
+                throw new InvalidTypeException(\sprintf("Exception when setting value for '%s': ", $name) . $exception->getMessage());
+            }
         }
 
         /** @var Definition $definition */
