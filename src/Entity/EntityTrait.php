@@ -61,7 +61,7 @@ trait EntityTrait
                 $this->setValue($name, $value);
             }
             catch (InvalidTypeException $exception) {
-                throw new InvalidTypeException(\sprintf("Exception when setting value for '%s': ", $name) . $exception->getMessage());
+                throw new InvalidTypeException(\sprintf("Invalid value type for '%s': ", $name) . $exception->getMessage());
             }
         }
 
