@@ -82,7 +82,7 @@ trait EntityTrait
                 continue;
             }
 
-            throw new EmptyException(\sprintf("Property '%s' not set", $definition->getName()));
+            throw new EmptyException(\sprintf("Property '%s' not set in '%s'", $definition->getName(), \get_class($this)));
         }
     }
 
@@ -178,7 +178,7 @@ trait EntityTrait
     public function with(string $name, $value) : EntityInterface
     {
         if (!self::getDefinitions()->has($name)) {
-            throw new InvalidPropertyException(\sprintf("Invalid property '%s'", $name));
+            throw new InvalidPropertyException(\sprintf("Invalid property '%s' in '%s'", $name, \get_class($this)));
         }
 
         $data = $this->toArray();
