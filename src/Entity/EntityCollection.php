@@ -9,17 +9,22 @@ declare(strict_types=1);
 
 namespace Ixocreate\Entity\Entity;
 
-use Ixocreate\Entity\Collection\AbstractCollection;
+use Ixocreate\Collection\Collection;
 
-class EntityCollection extends AbstractCollection
+final class EntityCollection extends Collection
 {
-    public function __construct(array $items = [], $callbackKeys = null)
+    /**
+     * EntityCollection constructor.
+     * @param array $items
+     * @param callable|string|int|null $indexBy
+     */
+    public function __construct(array $items = [], $indexBy = null)
     {
         $items = \array_values($items);
         $items = (function (EntityInterface ...$entity) {
             return $entity;
         })(...$items);
 
-        parent::__construct($items, $callbackKeys);
+        parent::__construct($items, $indexBy);
     }
 }

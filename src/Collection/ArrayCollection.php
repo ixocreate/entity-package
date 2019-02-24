@@ -9,14 +9,11 @@ declare(strict_types=1);
 
 namespace Ixocreate\Entity\Collection;
 
-class ArrayCollection extends AbstractCollection
+/**
+ * Class ArrayCollection
+ * @package Ixocreate\Entity\Collection
+ * @deprecated Use \Ixocreate\Collection\Collection
+ */
+class ArrayCollection extends \Ixocreate\Collection\Collection
 {
-    public function __construct(array $items = [], $callbackKeys = null)
-    {
-        $items = (function (array ...$array) {
-            return $array;
-        })(...$items);
-
-        parent::__construct($items, $callbackKeys);
-    }
 }

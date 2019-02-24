@@ -21,6 +21,10 @@ trait EntityTrait
      */
     private static $definitionCollection;
 
+    /**
+     * EntityTrait constructor.
+     * @param array $data
+     */
     public function __construct(array $data)
     {
         $this->applyData($data);
@@ -157,6 +161,9 @@ trait EntityTrait
         return $data;
     }
 
+    /**
+     * @return array
+     */
     public function toPublicArray(): array
     {
         $data = [];

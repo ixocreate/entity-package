@@ -9,10 +9,14 @@ declare(strict_types=1);
 
 namespace Ixocreate\Entity\Entity;
 
-use Ixocreate\Entity\Collection\AbstractCollection;
+use Ixocreate\Collection\Collection;
 
-final class DefinitionCollection extends AbstractCollection
+final class DefinitionCollection extends Collection
 {
+    /**
+     * DefinitionCollection constructor.
+     * @param array $items
+     */
     public function __construct(array $items = [])
     {
         $items = (function (Definition ...$model) {
