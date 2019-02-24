@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace Ixocreate\Entity\Entity;
 
-use Ixocreate\Collection\Collection;
+use Ixocreate\Collection\AbstractCollection;
 
-final class DefinitionCollection extends Collection
+final class DefinitionCollection extends AbstractCollection
 {
     /**
      * DefinitionCollection constructor.
