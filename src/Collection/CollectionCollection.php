@@ -9,11 +9,21 @@ declare(strict_types=1);
 
 namespace Ixocreate\Entity\Collection;
 
+use Ixocreate\Contract\Collection\CollectionInterface;
+
 /**
- * Class CollectionCollection
  * @package Ixocreate\Entity\Collection
- * @deprecated Use \Ixocreate\Collection\CollectionCollection
+ * @deprecated
+ * @see \Ixocreate\Collection\CollectionCollection
  */
-class CollectionCollection extends \Ixocreate\Collection\CollectionCollection
+final class CollectionCollection extends \Ixocreate\Collection\AbstractCollection
 {
+    public function __construct($items = [])
+    {
+        parent::__construct(
+            (function (CollectionInterface ...$collection) {
+                return $collection;
+            })(...$items)
+        );
+    }
 }

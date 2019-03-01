@@ -9,11 +9,28 @@ declare(strict_types=1);
 
 namespace Ixocreate\Entity\Collection;
 
+use Traversable;
+
 /**
- * Class ArrayCollection
  * @package Ixocreate\Entity\Collection
- * @deprecated Use \Ixocreate\Collection\Collection
+ * @deprecated
+ * @see \Ixocreate\Collection\ArrayCollection
  */
-class ArrayCollection extends \Ixocreate\Collection\Collection
+final class ArrayCollection extends \Ixocreate\Collection\AbstractCollection
 {
+    /**
+     * @param callable|array|Traversable $items
+     * @param callable|string|int|null $indexBy
+     */
+    public function __construct($items = [], $indexBy = null)
+    {
+        return parent::__construct(
+            new Collection(
+                (function (array ...$item) {
+                    return $item;
+                })(...$items),
+                $indexBy
+            )
+        );
+    }
 }

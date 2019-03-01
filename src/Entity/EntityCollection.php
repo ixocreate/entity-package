@@ -10,21 +10,24 @@ declare(strict_types=1);
 namespace Ixocreate\Entity\Entity;
 
 use Ixocreate\Collection\AbstractCollection;
+use Ixocreate\Collection\Collection;
+use Traversable;
 
 final class EntityCollection extends AbstractCollection
 {
     /**
-     * EntityCollection constructor.
-     * @param array $items
+     * @param callable|array|Traversable $items
      * @param callable|string|int|null $indexBy
      */
-    public function __construct(array $items = [], $indexBy = null)
+    public function __construct($items = [], $indexBy = null)
     {
-        $items = \array_values($items);
-        $items = (function (EntityInterface ...$entity) {
-            return $entity;
-        })(...$items);
-
-        parent::__construct($items, $indexBy);
+        parent::__construct(
+            new Collection(
+                (function (EntityInterface ...$entity) {
+                    return $entity;
+                })(...$items),
+                $indexBy
+            )
+        );
     }
 }

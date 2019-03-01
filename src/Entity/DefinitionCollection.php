@@ -10,24 +10,21 @@ declare(strict_types=1);
 namespace Ixocreate\Entity\Entity;
 
 use Ixocreate\Collection\AbstractCollection;
+use Ixocreate\Collection\Collection;
 
 final class DefinitionCollection extends AbstractCollection
 {
-    /**
-     * DefinitionCollection constructor.
-     * @param array $items
-     */
-    public function __construct(array $items = [])
+    public function __construct($items = [])
     {
-        $items = (function (Definition ...$model) {
-            return $model;
-        })(...$items);
-
-        parent::__construct(
-            $items,
-            function (Definition $definition) {
-                return $definition->getName();
-            }
+        return parent::__construct(
+            new Collection(
+                (function (Definition ...$item) {
+                    return $item;
+                })(...$items),
+                function (Definition $definition) {
+                    return $definition->getName();
+                }
+            )
         );
     }
 }

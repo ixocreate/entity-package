@@ -10,9 +10,9 @@ declare(strict_types=1);
 namespace Ixocreate\Entity\Collection;
 
 /**
- * Class AbstractCollection
  * @package Ixocreate\Entity\Collection
- * @deprecated Use \Ixocreate\Collection\AbstractCollection
+ * @deprecated
+ * @see \Ixocreate\Collection\AbstractCollection
  */
 abstract class AbstractCollection extends \Ixocreate\Collection\AbstractCollection
 {
