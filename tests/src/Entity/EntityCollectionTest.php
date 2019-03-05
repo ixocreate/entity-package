@@ -23,16 +23,17 @@ class EntityCollectionTest extends TestCase
         $data = [
             'name' => 'test',
         ];
-        $entity = new class($data) implements EntityInterface {
+        $entity = new class($data) implements EntityInterface
+        {
             use EntityTrait;
 
             private $name;
 
-            protected static function createDefinitions() : DefinitionCollection
+            protected static function createDefinitions(): DefinitionCollection
             {
                 return new DefinitionCollection([
-                      new Definition("name", "string", false),
-                  ]);
+                    new Definition("name", "string", false),
+                ]);
             }
         };
 
@@ -42,9 +43,9 @@ class EntityCollectionTest extends TestCase
         $this->assertSame("test", $entityCollection->get(0)->name);
     }
 
-    public function testDataIntegrityInvalidDataException()
+    public function testDataType()
     {
         $this->expectException(\Throwable::class);
-        new EntityCollection(['id' => 1]);
+        new EntityCollection([['id' => 1]]);
     }
 }
