@@ -11,20 +11,30 @@ namespace Ixocreate\Entity\Entity;
 
 use Ixocreate\Collection\AbstractCollection;
 use Ixocreate\Collection\Collection;
+use Ixocreate\Collection\Exception\InvalidType;
 
 final class DefinitionCollection extends AbstractCollection
 {
     public function __construct($items = [])
     {
-        return parent::__construct(
-            new Collection(
-                (function (Definition ...$item) {
-                    return $item;
-                })(...$items),
-                function (Definition $definition) {
-                    return $definition->getName();
-                }
-            )
-        );
+        $items = new Collection($items);
+
+        /**
+         * add type check
+         */
+        $items = $items->each(function ($value) {
+            if (!is_a($value, Definition::class)) {
+                throw new InvalidType('All items must be of type ' . Definition::class . '. Got item of type ' . gettype($value));
+            }
+        });
+
+        /**
+         * index by name after type check
+         */
+        $items = $items->indexBy(function (Definition $definition) {
+            return $definition->getName();
+        });
+
+        return parent::__construct($items);
     }
 }

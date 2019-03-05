@@ -11,6 +11,7 @@ namespace Ixocreate\Entity\Entity;
 
 use Ixocreate\Collection\AbstractCollection;
 use Ixocreate\Collection\Collection;
+use Ixocreate\Collection\Exception\InvalidType;
 use Traversable;
 
 final class EntityCollection extends AbstractCollection
@@ -21,13 +22,24 @@ final class EntityCollection extends AbstractCollection
      */
     public function __construct($items = [], $indexBy = null)
     {
-        parent::__construct(
-            new Collection(
-                (function (EntityInterface ...$entity) {
-                    return $entity;
-                })(...$items),
-                $indexBy
-            )
-        );
+        $items = new Collection($items);
+
+        /**
+         * add type check
+         */
+        $items = $items->each(function ($value) {
+            if (!is_a($value, EntityInterface::class)) {
+                throw new InvalidType('All items must be of type ' . EntityInterface::class . '. Got item of type ' . gettype($value));
+            }
+        });
+
+        /**
+         * index by after type check
+         */
+        if ($indexBy !== null) {
+            $items = $items->indexBy($indexBy);
+        }
+
+        parent::__construct($items);
     }
 }

@@ -9,29 +9,51 @@ declare(strict_types=1);
 
 namespace IxocreateTest\Entity\Entity;
 
+use Ixocreate\Collection\Exception\InvalidType;
 use Ixocreate\Entity\Entity\Definition;
 use Ixocreate\Entity\Entity\DefinitionCollection;
 use PHPUnit\Framework\TestCase;
 
 class DefinitionCollectionTest extends TestCase
 {
-    public function testCollection()
+    private function data()
     {
-        $definition = new Definition(
-            "testString",
-            "string",
-            false,
-            false
-        );
-
-        $collection = new DefinitionCollection([$definition]);
-
-        $this->assertEquals($definition, $collection->get("testString"));
+        return [
+            new Definition(
+                "testString",
+                "string",
+                false,
+                false
+            ),
+            new Definition(
+                "testString2",
+                "string",
+                false,
+                true
+            ),
+        ];
     }
 
-    public function testInvalidData()
+    public function testCollection()
     {
-        $this->expectException(\Throwable::class);
-        new DefinitionCollection(['id' => 1]);
+        $data = $this->data();
+        $collection = new DefinitionCollection($data);
+        $this->assertCount(2, $collection);
+
+        $data = $collection->toArray();
+        $collection = new DefinitionCollection($collection);
+        $this->assertSame($data, $collection->toArray());
+    }
+
+    public function testIsIndexedByName()
+    {
+        $collection = new DefinitionCollection($this->data());
+        $this->assertEquals($this->data()[1], $collection->get("testString2"));
+    }
+
+    public function testInvalidTypeException()
+    {
+        $this->expectException(InvalidType::class);
+        (new DefinitionCollection([['id' => 1]]))->toArray();
     }
 }
