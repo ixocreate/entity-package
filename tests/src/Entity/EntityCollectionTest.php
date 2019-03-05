@@ -60,22 +60,6 @@ class EntityCollectionTest extends TestCase
         $this->assertSame($data, $collection->toArray());
     }
 
-    public function testIndexBy()
-    {
-        $data = $this->data();
-
-        $collection = new EntityCollection($data, 'id');
-
-        $collection = new EntityCollection($data, function(EntityInterface $entity) {
-            return $entity['id'];
-        });
-
-        var_dump($collection->toArray());
-
-        //$this->assertSame("Test One", $collection->get('One')->name);
-        ////$this->assertSame($data, $collection->values()->toArray());
-    }
-
     public function testInvalidTypeException()
     {
         $this->expectException(InvalidType::class);

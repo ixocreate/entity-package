@@ -23,7 +23,7 @@ final class DefinitionCollection extends AbstractCollection
          * add type check
          */
         $items = $items->each(function ($value) {
-            if (!is_a($value, Definition::class)) {
+            if (!($value instanceof Definition)) {
                 throw new InvalidType('All items must be of type ' . Definition::class . '. Got item of type ' . gettype($value));
             }
         });

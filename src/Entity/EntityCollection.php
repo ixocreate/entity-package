@@ -28,7 +28,7 @@ final class EntityCollection extends AbstractCollection
          * add type check
          */
         $items = $items->each(function ($value) {
-            if (!is_a($value, EntityInterface::class)) {
+            if (!($value instanceof EntityInterface)) {
                 throw new InvalidType('All items must be of type ' . EntityInterface::class . '. Got item of type ' . gettype($value));
             }
         });
