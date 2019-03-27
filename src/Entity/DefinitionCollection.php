@@ -24,7 +24,7 @@ final class DefinitionCollection extends AbstractCollection
          */
         $items = $items->each(function ($value) {
             if (!($value instanceof Definition)) {
-                throw new InvalidType('All items must be of type ' . Definition::class . '. Got item of type ' . gettype($value));
+                throw new InvalidType('All items must be of type ' . Definition::class . '. Got item of type ' . \gettype($value));
             }
         });
 

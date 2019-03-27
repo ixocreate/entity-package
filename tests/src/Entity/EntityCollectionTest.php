@@ -32,8 +32,7 @@ class EntityCollectionTest extends TestCase
 
     private function entity($data)
     {
-        return new class($data) implements EntityInterface
-        {
+        return new class($data) implements EntityInterface {
             use EntityTrait;
 
             private $id;
