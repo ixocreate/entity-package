@@ -12,7 +12,7 @@ namespace Ixocreate\Entity\Type;
 use Ixocreate\Contract\ServiceManager\NamedServiceInterface;
 use Ixocreate\Contract\Type\TypeInterface;
 
-abstract class AbstractType implements TypeInterface, NamedServiceInterface
+abstract class AbstractType implements TypeInterface, NamedServiceInterface, \Serializable
 {
     /**
      * @var mixed
@@ -91,5 +91,24 @@ abstract class AbstractType implements TypeInterface, NamedServiceInterface
     public function jsonSerialize()
     {
         return (string) $this;
+    }
+
+    /**
+     * @return string|void
+     */
+    public function serialize()
+    {
+        return serialize([
+            'value' => $this->value
+        ]);
+    }
+
+    /**
+     * @param string $serialized
+     */
+    public function unserialize($serialized)
+    {
+        $unserialized = \unserialize($serialized);
+        $this->value = $unserialized['value'];
     }
 }
