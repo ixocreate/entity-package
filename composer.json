@@ -1,5 +1,5 @@
 {
-    "name": "ixocreate/entity",
+    "name": "ixocreate/entity-package",
     "description": "A library for entities and collections",
     "license": "MIT",
     "type": "library",
