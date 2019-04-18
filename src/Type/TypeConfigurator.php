@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Entity\Package\Type;
+namespace Ixocreate\Entity\Type;
 
 use Ixocreate\Application\Service\Configurator\ConfiguratorInterface;
 use Ixocreate\Application\Service\Registry\ServiceRegistryInterface;
@@ -26,7 +26,7 @@ final class TypeConfigurator implements ConfiguratorInterface
      */
     public function __construct()
     {
-        $this->subManagerConfigurator = new SubManagerConfigurator(TypeSubManager::class, \Ixocreate\Type\Package\TypeInterface::class);
+        $this->subManagerConfigurator = new SubManagerConfigurator(TypeSubManager::class, \Ixocreate\Type\TypeInterface::class);
     }
 
     /**

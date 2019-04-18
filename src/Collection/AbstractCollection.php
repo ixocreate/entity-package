@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Entity\Package\Collection;
+namespace Ixocreate\Entity\Collection;
 
 /**
- * @package Ixocreate\Entity\Package\Collection
+ * @package Ixocreate\Entity\Collection
  * @deprecated
  * @see \Ixocreate\Collection\AbstractCollection
  */

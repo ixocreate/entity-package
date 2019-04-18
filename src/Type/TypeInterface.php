@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Entity\Package\Type;
+namespace Ixocreate\Entity\Type;
 
 /**
  * Interface TypeInterface
- * @package Ixocreate\Entity\Package\Type
+ * @package Ixocreate\Entity\Type
  * @deprecated
  */
-interface TypeInterface extends \Ixocreate\Type\Package\TypeInterface
+interface TypeInterface extends \Ixocreate\Type\TypeInterface
 {
 }

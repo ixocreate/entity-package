@@ -10,8 +10,8 @@ declare(strict_types=1);
 namespace Ixocreate\Test\Entity\Entity;
 
 use Ixocreate\Collection\Exception\InvalidType;
-use Ixocreate\Entity\Package\Definition;
-use Ixocreate\Entity\Package\DefinitionCollection;
+use Ixocreate\Entity\Definition;
+use Ixocreate\Entity\DefinitionCollection;
 use PHPUnit\Framework\TestCase;
 
 class DefinitionCollectionTest extends TestCase
