@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Ixocreate\Test\Entity\Type\Convert;
 
-use Ixocreate\Package\Entity\Type\Convert\Convert;
+use Ixocreate\Entity\Package\Type\Convert\Convert;
 use PHPUnit\Framework\TestCase;
 
 class ConvertTest extends TestCase

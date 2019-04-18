@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Package\Entity\Exception;
+namespace Ixocreate\Entity\Package\Exception;
 
 class InvalidPropertyException extends \LogicException
 {

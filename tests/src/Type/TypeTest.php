@@ -9,10 +9,10 @@ declare(strict_types=1);
 
 namespace Ixocreate\Test\Entity\Type;
 
-use Ixocreate\Package\Type\TypeInterface;
-use Ixocreate\Package\Entity\Exception\InvalidTypeException;
-use Ixocreate\Package\Entity\Exception\ServiceNotCreatedException;
-use Ixocreate\Package\Entity\Type\Type;
+use Ixocreate\Type\Package\TypeInterface;
+use Ixocreate\Entity\Package\Exception\InvalidTypeException;
+use Ixocreate\Entity\Package\Exception\ServiceNotCreatedException;
+use Ixocreate\Entity\Package\Type\Type;
 use Ixocreate\ServiceManager\Factory\AutowireFactory;
 use Ixocreate\ServiceManager\ServiceManager;
 use Ixocreate\ServiceManager\ServiceManagerConfig;

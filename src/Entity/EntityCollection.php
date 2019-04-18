@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Package\Entity\Entity;
+namespace Ixocreate\Entity\Package\Entity;
 
 use Ixocreate\Collection\AbstractCollection;
 use Ixocreate\Collection\Collection;

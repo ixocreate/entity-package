@@ -10,11 +10,11 @@ declare(strict_types=1);
 namespace Ixocreate\Test\Entity\Collection;
 
 use Ixocreate\Collection\Exception\InvalidType;
-use Ixocreate\Package\Entity\Entity\Definition;
-use Ixocreate\Package\Entity\Entity\DefinitionCollection;
-use Ixocreate\Package\Entity\Entity\EntityCollection;
-use Ixocreate\Package\Entity\Entity\EntityInterface;
-use Ixocreate\Package\Entity\Entity\EntityTrait;
+use Ixocreate\Entity\Package\Entity\Definition;
+use Ixocreate\Entity\Package\Entity\DefinitionCollection;
+use Ixocreate\Entity\Package\Entity\EntityCollection;
+use Ixocreate\Entity\Package\Entity\EntityInterface;
+use Ixocreate\Entity\Package\Entity\EntityTrait;
 use PHPUnit\Framework\TestCase;
 
 class EntityCollectionTest extends TestCase

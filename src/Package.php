@@ -7,15 +7,15 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Package\Entity;
+namespace Ixocreate\Entity\Package;
 
 use Ixocreate\Application\ConfiguratorRegistryInterface;
-use Ixocreate\Application\PackageInterface;
+use Ixocreate\Application\Package\PackageInterface;
 use Ixocreate\Application\ServiceRegistryInterface;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Package\Entity\BootstrapItem\TypeBootstrapItem;
-use Ixocreate\Package\Entity\Type\Type;
-use Ixocreate\Package\Entity\Type\TypeSubManager;
+use Ixocreate\Entity\Package\Bootstrap\TypeBootstrapItem;
+use Ixocreate\Entity\Package\Type\Type;
+use Ixocreate\Entity\Package\Type\TypeSubManager;
 
 final class Package implements PackageInterface
 {

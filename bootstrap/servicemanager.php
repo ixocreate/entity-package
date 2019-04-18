@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace Ixocreate\Package\Entity;
+namespace Ixocreate\Entity\Package;
 
-use Ixocreate\Package\Entity\Type\TypeSubManager;
+use Ixocreate\Entity\Package\Type\TypeSubManager;
 use Ixocreate\ServiceManager\ServiceManagerConfigurator;
 
 /** @var ServiceManagerConfigurator $serviceManager */

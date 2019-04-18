@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Ixocreate\Test\Entity\Entity;
 
-use Ixocreate\Package\Entity\Entity\Definition;
+use Ixocreate\Entity\Package\Entity\Definition;
 use PHPUnit\Framework\TestCase;
 
 class DefinitionTest extends TestCase
