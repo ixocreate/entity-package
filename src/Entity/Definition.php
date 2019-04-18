@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Entity\Entity;
+namespace Ixocreate\Package\Entity\Entity;
 
 final class Definition
 {

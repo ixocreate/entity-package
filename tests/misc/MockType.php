@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace IxocreateMisc\Entity;
+namespace Ixocreate\Misc\Entity;
 
-use Ixocreate\Entity\Type\AbstractType;
+use Ixocreate\Package\Entity\Type\AbstractType;
 
 final class MockType extends AbstractType
 {

@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace IxocreateTest\Entity\Entity;
+namespace Ixocreate\Test\Entity\Entity;
 
-use Ixocreate\Entity\Entity\Definition;
+use Ixocreate\Package\Entity\Entity\Definition;
 use PHPUnit\Framework\TestCase;
 
 class DefinitionTest extends TestCase

@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Entity\Type;
+namespace Ixocreate\Package\Entity\Type;
 
-use Ixocreate\Contract\ServiceManager\NamedServiceInterface;
-use Ixocreate\Contract\Type\TypeInterface;
+use Ixocreate\ServiceManager\NamedServiceInterface;
+use Ixocreate\Package\Type\TypeInterface;
 
 abstract class AbstractType implements TypeInterface, NamedServiceInterface, \Serializable
 {

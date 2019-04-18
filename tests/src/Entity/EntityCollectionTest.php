@@ -7,14 +7,14 @@
 
 declare(strict_types=1);
 
-namespace IxocreateTest\Entity\Collection;
+namespace Ixocreate\Test\Entity\Collection;
 
 use Ixocreate\Collection\Exception\InvalidType;
-use Ixocreate\Entity\Entity\Definition;
-use Ixocreate\Entity\Entity\DefinitionCollection;
-use Ixocreate\Entity\Entity\EntityCollection;
-use Ixocreate\Entity\Entity\EntityInterface;
-use Ixocreate\Entity\Entity\EntityTrait;
+use Ixocreate\Package\Entity\Entity\Definition;
+use Ixocreate\Package\Entity\Entity\DefinitionCollection;
+use Ixocreate\Package\Entity\Entity\EntityCollection;
+use Ixocreate\Package\Entity\Entity\EntityInterface;
+use Ixocreate\Package\Entity\Entity\EntityTrait;
 use PHPUnit\Framework\TestCase;
 
 class EntityCollectionTest extends TestCase

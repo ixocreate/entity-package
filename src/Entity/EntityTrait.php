@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Entity\Entity;
+namespace Ixocreate\Package\Entity\Entity;
 
-use Ixocreate\Entity\Exception\EmptyException;
-use Ixocreate\Entity\Exception\InvalidPropertyException;
-use Ixocreate\Entity\Exception\InvalidTypeException;
-use Ixocreate\Entity\Type\Type;
+use Ixocreate\Package\Entity\Exception\EmptyException;
+use Ixocreate\Package\Entity\Exception\InvalidPropertyException;
+use Ixocreate\Package\Entity\Exception\InvalidTypeException;
+use Ixocreate\Package\Entity\Type\Type;
 
 trait EntityTrait
 {

@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Entity\Collection;
+namespace Ixocreate\Package\Entity\Collection;
 
 use Traversable;
 
 /**
- * @package Ixocreate\Entity\Collection
+ * @package Ixocreate\Package\Entity\Collection
  * @deprecated
  * @see \Ixocreate\Collection\ArrayCollection
  */

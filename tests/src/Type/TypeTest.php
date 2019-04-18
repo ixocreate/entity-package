@@ -7,19 +7,19 @@
 
 declare(strict_types=1);
 
-namespace IxocreateTest\Entity\Type;
+namespace Ixocreate\Test\Entity\Type;
 
-use Ixocreate\Contract\Type\TypeInterface;
-use Ixocreate\Entity\Exception\InvalidTypeException;
-use Ixocreate\Entity\Exception\ServiceNotCreatedException;
-use Ixocreate\Entity\Type\Type;
+use Ixocreate\Package\Type\TypeInterface;
+use Ixocreate\Package\Entity\Exception\InvalidTypeException;
+use Ixocreate\Package\Entity\Exception\ServiceNotCreatedException;
+use Ixocreate\Package\Entity\Type\Type;
 use Ixocreate\ServiceManager\Factory\AutowireFactory;
 use Ixocreate\ServiceManager\ServiceManager;
 use Ixocreate\ServiceManager\ServiceManagerConfig;
 use Ixocreate\ServiceManager\ServiceManagerConfigurator;
 use Ixocreate\ServiceManager\ServiceManagerSetup;
 use Ixocreate\ServiceManager\SubManager\SubManager;
-use IxocreateMisc\Entity\MockType;
+use Ixocreate\Misc\Entity\MockType;
 use PHPUnit\Framework\TestCase;
 
 class TypeTest extends TestCase
@@ -72,12 +72,12 @@ class TypeTest extends TestCase
         $integer = 1 ;
         $this->assertSame($integer, Type::create($integer, TypeInterface::TYPE_INT));
 
-        $email = Type::create("noreply@kiwi-suite.com", MockType::class);
+        $email = Type::create("noreply@example.com", MockType::class);
         $this->assertInstanceOf(MockType::class, $email);
-        $this->assertSame("noreply@kiwi-suite.com", $email->getValue());
+        $this->assertSame("noreply@example.com", $email->getValue());
 
 
-        $email1 = new MockType("noreply@kiwi-suite.com");
+        $email1 = new MockType("noreply@example.com");
         $email1Check = Type::create($email1, MockType::class);
         $this->assertSame($email1, $email1Check);
     }
@@ -85,7 +85,7 @@ class TypeTest extends TestCase
     public function testSubManagerNotSet()
     {
         $this->expectException(ServiceNotCreatedException::class);
-        Type::create("noreply@kiwi-suite.com", MockType::class);
+        Type::create("noreply@example.com", MockType::class);
     }
 
     /**
@@ -96,7 +96,7 @@ class TypeTest extends TestCase
         Type::initialize($this->subManager);
 
         $this->expectException(ServiceNotCreatedException::class);
-        Type::create("noreply@kiwi-suite.com", \DateTime::class);
+        Type::create("noreply@example.com", \DateTime::class);
     }
 
     /**

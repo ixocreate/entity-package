@@ -1,6 +1,6 @@
 {
-    "name": "ixocreate/entity",
-    "description": "A library for entities and collections",
+    "name": "ixocreate/entity-package",
+    "description": "IXOCREATE Entity package",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -12,26 +12,24 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.1",
-        "ixocreate/collection": "dev-develop",
-        "ixocreate/contract": "dev-develop",
-        "ixocreate/servicemanager": "dev-develop",
-        "ixocreate/application": "dev-develop",
+        "ixocreate/application": "dev-consolidate",
+        "ixocreate/collection": "dev-consolidate",
         "zendframework/zend-filter": "^2.7"
     },
     "require-dev": {
-        "ixocreate/coding-standard": "^1.0.1",
+        "ixocreate/coding-standard": "^1.0",
         "php-coveralls/php-coveralls": "^2.1",
         "phpunit/phpunit": "^7.0"
     },
     "autoload": {
         "psr-4": {
-            "Ixocreate\\Entity\\": "src/"
+            "Ixocreate\\Package\\Entity\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "IxocreateTest\\Entity\\": "tests/src/",
-            "IxocreateMisc\\Entity\\": "tests/misc/"
+            "Ixocreate\\Test\\Entity\\": "tests/src/",
+            "Ixocreate\\Misc\\Entity\\": "tests/misc/"
         }
     },
     "scripts": {

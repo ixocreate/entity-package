@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Entity\Exception;
+namespace Ixocreate\Package\Entity\Exception;
 
 class InvalidTypeException extends \LogicException
 {

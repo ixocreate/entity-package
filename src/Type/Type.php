@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Entity\Type;
+namespace Ixocreate\Package\Entity\Type;
 
-use Ixocreate\Contract\ServiceManager\SubManager\SubManagerInterface;
-use Ixocreate\Entity\Exception\InvalidTypeException;
-use Ixocreate\Entity\Exception\ServiceNotCreatedException;
-use Ixocreate\Entity\Type\Convert\Convert;
+use Ixocreate\ServiceManager\SubManager\SubManagerInterface;
+use Ixocreate\Package\Entity\Exception\InvalidTypeException;
+use Ixocreate\Package\Entity\Exception\ServiceNotCreatedException;
+use Ixocreate\Package\Entity\Type\Convert\Convert;
 
 final class Type
 {
@@ -71,9 +71,9 @@ final class Type
 
     /**
      * @param string $type
-     * @return \Ixocreate\Contract\Type\TypeInterface
+     * @return \Ixocreate\Package\Type\TypeInterface
      */
-    public static function get(string $type): \Ixocreate\Contract\Type\TypeInterface
+    public static function get(string $type): \Ixocreate\Package\Type\TypeInterface
     {
         return self::getInstance()->doGet($type);
     }
@@ -97,7 +97,7 @@ final class Type
             return $value;
         }
 
-        /** @var \Ixocreate\Contract\Type\TypeInterface $typeObject */
+        /** @var \Ixocreate\Package\Type\TypeInterface $typeObject */
         $typeObject = $this->doGet($type);
 
         if ($value instanceof $typeObject) {
@@ -109,9 +109,9 @@ final class Type
 
     /**
      * @param string $type
-     * @return \Ixocreate\Contract\Type\TypeInterface
+     * @return \Ixocreate\Package\Type\TypeInterface
      */
-    private function doGet(string $type): \Ixocreate\Contract\Type\TypeInterface
+    private function doGet(string $type): \Ixocreate\Package\Type\TypeInterface
     {
         if (!($this->subManager instanceof SubManagerInterface)) {
             throw new ServiceNotCreatedException(\sprintf("'%s' was not initialized with a SubManager", Type::class));
@@ -121,7 +121,7 @@ final class Type
             throw new ServiceNotCreatedException(\sprintf("Can't find type '%s'", $type));
         }
 
-        /** @var \Ixocreate\Contract\Type\TypeInterface $typeObject */
+        /** @var \Ixocreate\Package\Type\TypeInterface $typeObject */
         return $this->subManager->get($type);
     }
 
@@ -134,12 +134,12 @@ final class Type
         return \in_array(
             $type,
             [
-                \Ixocreate\Contract\Type\TypeInterface::TYPE_STRING,
-                \Ixocreate\Contract\Type\TypeInterface::TYPE_ARRAY,
-                \Ixocreate\Contract\Type\TypeInterface::TYPE_BOOL,
-                \Ixocreate\Contract\Type\TypeInterface::TYPE_CALLABLE,
-                \Ixocreate\Contract\Type\TypeInterface::TYPE_FLOAT,
-                \Ixocreate\Contract\Type\TypeInterface::TYPE_INT,
+                \Ixocreate\Package\Type\TypeInterface::TYPE_STRING,
+                \Ixocreate\Package\Type\TypeInterface::TYPE_ARRAY,
+                \Ixocreate\Package\Type\TypeInterface::TYPE_BOOL,
+                \Ixocreate\Package\Type\TypeInterface::TYPE_CALLABLE,
+                \Ixocreate\Package\Type\TypeInterface::TYPE_FLOAT,
+                \Ixocreate\Package\Type\TypeInterface::TYPE_INT,
             ]
         );
     }
@@ -160,14 +160,14 @@ final class Type
         }
 
         switch ($type) {
-            case \Ixocreate\Contract\Type\TypeInterface::TYPE_STRING:
-            case \Ixocreate\Contract\Type\TypeInterface::TYPE_BOOL:
-            case \Ixocreate\Contract\Type\TypeInterface::TYPE_FLOAT:
-            case \Ixocreate\Contract\Type\TypeInterface::TYPE_INT:
+            case \Ixocreate\Package\Type\TypeInterface::TYPE_STRING:
+            case \Ixocreate\Package\Type\TypeInterface::TYPE_BOOL:
+            case \Ixocreate\Package\Type\TypeInterface::TYPE_FLOAT:
+            case \Ixocreate\Package\Type\TypeInterface::TYPE_INT:
                 $value = \call_user_func(Convert::class . "::convert" . \ucfirst($type), $value);
                 break;
-            case \Ixocreate\Contract\Type\TypeInterface::TYPE_ARRAY:
-            case \Ixocreate\Contract\Type\TypeInterface::TYPE_CALLABLE:
+            case \Ixocreate\Package\Type\TypeInterface::TYPE_ARRAY:
+            case \Ixocreate\Package\Type\TypeInterface::TYPE_CALLABLE:
             default:
                 break;
         }

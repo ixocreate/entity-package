@@ -7,15 +7,15 @@
 
 declare(strict_types=1);
 
-namespace IxocreateTest\Entity\Entity;
+namespace Ixocreate\Test\Entity\Entity;
 
-use Ixocreate\Contract\Type\TypeInterface;
-use Ixocreate\Entity\Entity\Definition;
-use Ixocreate\Entity\Entity\DefinitionCollection;
-use Ixocreate\Entity\Entity\EntityInterface;
-use Ixocreate\Entity\Entity\EntityTrait;
-use Ixocreate\Entity\Exception\EmptyException;
-use Ixocreate\Entity\Exception\InvalidPropertyException;
+use Ixocreate\Package\Type\TypeInterface;
+use Ixocreate\Package\Entity\Entity\Definition;
+use Ixocreate\Package\Entity\Entity\DefinitionCollection;
+use Ixocreate\Package\Entity\Entity\EntityInterface;
+use Ixocreate\Package\Entity\Entity\EntityTrait;
+use Ixocreate\Package\Entity\Exception\EmptyException;
+use Ixocreate\Package\Entity\Exception\InvalidPropertyException;
 use PHPUnit\Framework\TestCase;
 
 class EntityTraitTest extends TestCase

@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Entity\Type\Convert;
+namespace Ixocreate\Package\Entity\Type\Convert;
 
 class Convert
 {
