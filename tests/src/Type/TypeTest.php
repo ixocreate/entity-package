@@ -16,7 +16,7 @@ use Ixocreate\Entity\Type\Type;
 use Ixocreate\ServiceManager\Factory\AutowireFactory;
 use Ixocreate\ServiceManager\ServiceManager;
 use Ixocreate\ServiceManager\ServiceManagerConfig;
-use Ixocreate\ServiceManager\ServiceManagerConfigurator;
+use Ixocreate\Application\Service\ServiceManagerConfigurator;
 use Ixocreate\ServiceManager\ServiceManagerSetup;
 use Ixocreate\ServiceManager\SubManager\SubManager;
 use Ixocreate\Misc\Entity\MockType;
