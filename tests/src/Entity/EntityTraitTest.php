@@ -10,10 +10,10 @@ declare(strict_types=1);
 namespace Ixocreate\Test\Entity\Entity;
 
 use Ixocreate\Type\Package\TypeInterface;
-use Ixocreate\Entity\Package\Entity\Definition;
-use Ixocreate\Entity\Package\Entity\DefinitionCollection;
-use Ixocreate\Entity\Package\Entity\EntityInterface;
-use Ixocreate\Entity\Package\Entity\EntityTrait;
+use Ixocreate\Entity\Package\Definition;
+use Ixocreate\Entity\Package\DefinitionCollection;
+use Ixocreate\Entity\Package\EntityInterface;
+use Ixocreate\Entity\Package\EntityTrait;
 use Ixocreate\Entity\Package\Exception\EmptyException;
 use Ixocreate\Entity\Package\Exception\InvalidPropertyException;
 use PHPUnit\Framework\TestCase;

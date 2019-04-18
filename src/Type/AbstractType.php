@@ -98,8 +98,8 @@ abstract class AbstractType implements TypeInterface, NamedServiceInterface, \Se
      */
     public function serialize()
     {
-        return serialize([
-            'value' => $this->value
+        return \serialize([
+            'value' => $this->value,
         ]);
     }
 

@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Entity\Package\Entity;
+namespace Ixocreate\Entity\Package;
 
 interface EntityInterface extends \JsonSerializable, \ArrayAccess
 {

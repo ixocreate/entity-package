@@ -9,13 +9,13 @@ declare(strict_types=1);
 
 namespace Ixocreate\Entity\Package;
 
-use Ixocreate\Application\ConfiguratorRegistryInterface;
-use Ixocreate\Application\Package\PackageInterface;
-use Ixocreate\Application\ServiceRegistryInterface;
-use Ixocreate\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Application\Service\Configurator\ConfiguratorRegistryInterface;
+use Ixocreate\Application\PackageInterface;
+use Ixocreate\Application\Service\Registry\ServiceRegistryInterface;
 use Ixocreate\Entity\Package\Bootstrap\TypeBootstrapItem;
 use Ixocreate\Entity\Package\Type\Type;
 use Ixocreate\Entity\Package\Type\TypeSubManager;
+use Ixocreate\ServiceManager\ServiceManagerInterface;
 
 final class Package implements PackageInterface
 {
