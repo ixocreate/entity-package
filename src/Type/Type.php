@@ -9,10 +9,10 @@ declare(strict_types=1);
 
 namespace Ixocreate\Entity\Type;
 
-use Ixocreate\ServiceManager\SubManager\SubManagerInterface;
 use Ixocreate\Entity\Exception\InvalidTypeException;
 use Ixocreate\Entity\Exception\ServiceNotCreatedException;
 use Ixocreate\Entity\Type\Convert\Convert;
+use Ixocreate\ServiceManager\SubManager\SubManagerInterface;
 
 final class Type
 {

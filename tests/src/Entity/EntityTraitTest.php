@@ -9,13 +9,13 @@ declare(strict_types=1);
 
 namespace Ixocreate\Test\Entity\Entity;
 
-use Ixocreate\Type\TypeInterface;
 use Ixocreate\Entity\Definition;
 use Ixocreate\Entity\DefinitionCollection;
 use Ixocreate\Entity\EntityInterface;
 use Ixocreate\Entity\EntityTrait;
 use Ixocreate\Entity\Exception\EmptyException;
 use Ixocreate\Entity\Exception\InvalidPropertyException;
+use Ixocreate\Type\TypeInterface;
 use PHPUnit\Framework\TestCase;
 
 class EntityTraitTest extends TestCase
