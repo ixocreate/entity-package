@@ -13,4 +13,8 @@ use Ixocreate\Entity\Type\AbstractType;
 
 final class MockType extends AbstractType
 {
+    public static function serviceName(): string
+    {
+        return 'mock';
+    }
 }
