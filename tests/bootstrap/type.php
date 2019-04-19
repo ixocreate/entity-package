@@ -7,4 +7,4 @@
 
 declare(strict_types=1);
 /** @var \Ixocreate\ServiceManager\ServiceManagerConfigurator $typeConfigurator */
-$typeConfigurator->addFactory(\IxocreateMisc\Entity\MockType::class);
+$typeConfigurator->addFactory(\Ixocreate\Misc\Entity\MockType::class);

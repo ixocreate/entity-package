@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace Ixocreate\Entity\Type;
 
-use Ixocreate\Contract\ServiceManager\NamedServiceInterface;
-use Ixocreate\Contract\Type\TypeInterface;
+use Ixocreate\ServiceManager\NamedServiceInterface;
+use Ixocreate\Type\TypeInterface;
 
 abstract class AbstractType implements TypeInterface, NamedServiceInterface, \Serializable
 {
@@ -98,8 +98,8 @@ abstract class AbstractType implements TypeInterface, NamedServiceInterface, \Se
      */
     public function serialize()
     {
-        return serialize([
-            'value' => $this->value
+        return \serialize([
+            'value' => $this->value,
         ]);
     }
 

@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace IxocreateTest\Entity\Entity;
+namespace Ixocreate\Test\Entity\Entity;
 
-use Ixocreate\Contract\Type\TypeInterface;
-use Ixocreate\Entity\Entity\Definition;
-use Ixocreate\Entity\Entity\DefinitionCollection;
-use Ixocreate\Entity\Entity\EntityInterface;
-use Ixocreate\Entity\Entity\EntityTrait;
+use Ixocreate\Type\TypeInterface;
+use Ixocreate\Entity\Definition;
+use Ixocreate\Entity\DefinitionCollection;
+use Ixocreate\Entity\EntityInterface;
+use Ixocreate\Entity\EntityTrait;
 use Ixocreate\Entity\Exception\EmptyException;
 use Ixocreate\Entity\Exception\InvalidPropertyException;
 use PHPUnit\Framework\TestCase;

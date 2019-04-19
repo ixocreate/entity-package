@@ -9,13 +9,12 @@ declare(strict_types=1);
 
 namespace Ixocreate\Entity;
 
-use Ixocreate\Contract\Application\ConfiguratorRegistryInterface;
-use Ixocreate\Contract\Application\PackageInterface;
-use Ixocreate\Contract\Application\ServiceRegistryInterface;
-use Ixocreate\Contract\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Entity\BootstrapItem\TypeBootstrapItem;
+use Ixocreate\Application\Configurator\ConfiguratorRegistryInterface;
+use Ixocreate\Application\Package\PackageInterface;
+use Ixocreate\Application\Service\ServiceRegistryInterface;
 use Ixocreate\Entity\Type\Type;
-use Ixocreate\Entity\Type\TypeSubManager;
+use Ixocreate\ServiceManager\ServiceManagerInterface;
+use Ixocreate\Type\TypeSubManager;
 
 final class Package implements PackageInterface
 {
@@ -38,9 +37,7 @@ final class Package implements PackageInterface
      */
     public function getBootstrapItems(): ?array
     {
-        return [
-            TypeBootstrapItem::class,
-        ];
+        return null;
     }
 
     /**

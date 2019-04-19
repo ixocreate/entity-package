@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Ixocreate\Entity\Entity;
+namespace Ixocreate\Entity;
 
 use Ixocreate\Entity\Exception\EmptyException;
 use Ixocreate\Entity\Exception\InvalidPropertyException;

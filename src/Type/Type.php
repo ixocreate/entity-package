@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Ixocreate\Entity\Type;
 
-use Ixocreate\Contract\ServiceManager\SubManager\SubManagerInterface;
+use Ixocreate\ServiceManager\SubManager\SubManagerInterface;
 use Ixocreate\Entity\Exception\InvalidTypeException;
 use Ixocreate\Entity\Exception\ServiceNotCreatedException;
 use Ixocreate\Entity\Type\Convert\Convert;
@@ -71,9 +71,9 @@ final class Type
 
     /**
      * @param string $type
-     * @return \Ixocreate\Contract\Type\TypeInterface
+     * @return \Ixocreate\Type\TypeInterface
      */
-    public static function get(string $type): \Ixocreate\Contract\Type\TypeInterface
+    public static function get(string $type): \Ixocreate\Type\TypeInterface
     {
         return self::getInstance()->doGet($type);
     }
@@ -97,7 +97,7 @@ final class Type
             return $value;
         }
 
-        /** @var \Ixocreate\Contract\Type\TypeInterface $typeObject */
+        /** @var \Ixocreate\Type\TypeInterface $typeObject */
         $typeObject = $this->doGet($type);
 
         if ($value instanceof $typeObject) {
@@ -109,9 +109,9 @@ final class Type
 
     /**
      * @param string $type
-     * @return \Ixocreate\Contract\Type\TypeInterface
+     * @return \Ixocreate\Type\TypeInterface
      */
-    private function doGet(string $type): \Ixocreate\Contract\Type\TypeInterface
+    private function doGet(string $type): \Ixocreate\Type\TypeInterface
     {
         if (!($this->subManager instanceof SubManagerInterface)) {
             throw new ServiceNotCreatedException(\sprintf("'%s' was not initialized with a SubManager", Type::class));
@@ -121,7 +121,7 @@ final class Type
             throw new ServiceNotCreatedException(\sprintf("Can't find type '%s'", $type));
         }
 
-        /** @var \Ixocreate\Contract\Type\TypeInterface $typeObject */
+        /** @var \Ixocreate\Type\TypeInterface $typeObject */
         return $this->subManager->get($type);
     }
 
@@ -134,12 +134,12 @@ final class Type
         return \in_array(
             $type,
             [
-                \Ixocreate\Contract\Type\TypeInterface::TYPE_STRING,
-                \Ixocreate\Contract\Type\TypeInterface::TYPE_ARRAY,
-                \Ixocreate\Contract\Type\TypeInterface::TYPE_BOOL,
-                \Ixocreate\Contract\Type\TypeInterface::TYPE_CALLABLE,
-                \Ixocreate\Contract\Type\TypeInterface::TYPE_FLOAT,
-                \Ixocreate\Contract\Type\TypeInterface::TYPE_INT,
+                \Ixocreate\Type\TypeInterface::TYPE_STRING,
+                \Ixocreate\Type\TypeInterface::TYPE_ARRAY,
+                \Ixocreate\Type\TypeInterface::TYPE_BOOL,
+                \Ixocreate\Type\TypeInterface::TYPE_CALLABLE,
+                \Ixocreate\Type\TypeInterface::TYPE_FLOAT,
+                \Ixocreate\Type\TypeInterface::TYPE_INT,
             ]
         );
     }
@@ -160,14 +160,14 @@ final class Type
         }
 
         switch ($type) {
-            case \Ixocreate\Contract\Type\TypeInterface::TYPE_STRING:
-            case \Ixocreate\Contract\Type\TypeInterface::TYPE_BOOL:
-            case \Ixocreate\Contract\Type\TypeInterface::TYPE_FLOAT:
-            case \Ixocreate\Contract\Type\TypeInterface::TYPE_INT:
+            case \Ixocreate\Type\TypeInterface::TYPE_STRING:
+            case \Ixocreate\Type\TypeInterface::TYPE_BOOL:
+            case \Ixocreate\Type\TypeInterface::TYPE_FLOAT:
+            case \Ixocreate\Type\TypeInterface::TYPE_INT:
                 $value = \call_user_func(Convert::class . "::convert" . \ucfirst($type), $value);
                 break;
-            case \Ixocreate\Contract\Type\TypeInterface::TYPE_ARRAY:
-            case \Ixocreate\Contract\Type\TypeInterface::TYPE_CALLABLE:
+            case \Ixocreate\Type\TypeInterface::TYPE_ARRAY:
+            case \Ixocreate\Type\TypeInterface::TYPE_CALLABLE:
             default:
                 break;
         }
