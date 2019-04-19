@@ -9,17 +9,17 @@ declare(strict_types=1);
 
 namespace Ixocreate\Test\Entity\Type;
 
+use Ixocreate\Application\Service\ServiceManagerConfig;
+use Ixocreate\Misc\Entity\MockType;
 use Ixocreate\Type\TypeInterface;
 use Ixocreate\Entity\Exception\InvalidTypeException;
 use Ixocreate\Entity\Exception\ServiceNotCreatedException;
 use Ixocreate\Entity\Type\Type;
 use Ixocreate\ServiceManager\Factory\AutowireFactory;
 use Ixocreate\ServiceManager\ServiceManager;
-use Ixocreate\ServiceManager\ServiceManagerConfig;
 use Ixocreate\Application\Service\ServiceManagerConfigurator;
 use Ixocreate\ServiceManager\ServiceManagerSetup;
 use Ixocreate\ServiceManager\SubManager\SubManager;
-use Ixocreate\Misc\Entity\MockType;
 use PHPUnit\Framework\TestCase;
 
 class TypeTest extends TestCase
