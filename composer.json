@@ -12,8 +12,8 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.1",
-        "ixocreate/application": "dev-consolidate",
-        "ixocreate/collection": "dev-consolidate",
+        "ixocreate/application": "dev-develop",
+        "ixocreate/collection": "dev-develop",
         "zendframework/zend-filter": "^2.7"
     },
     "require-dev": {
