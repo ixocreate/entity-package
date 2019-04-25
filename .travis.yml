@@ -15,7 +15,7 @@ install:
 
 script:
   - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then vendor/bin/phpunit --coverage-clover build/logs/clover.xml; else vendor/bin/phpunit; fi
-  - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then vendor/bin/php-cs-fixer fix --config=vendor/ixocreate/coding-standard/.php_cs -v --dry-run --using-cache=no --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB $TRAVIS_COMMIT_RANGE`; fi
+  - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then vendor/bin/php-cs-fixer fix --config=vendor/ixocreate/coding-standard/.php_cs -v --diff --dry-run --using-cache=no; fi
 
 after_success:
   - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then php vendor/bin/php-coveralls -v; fi
@@ -23,4 +23,7 @@ after_success:
 notifications:
   email: false
   slack:
-    secure: "pXozA6yh5qdjuM1r/WMStHPA01lbi2xY5+yl/yoPhe8o54cANf/AWeOh4g0z8OXNCcKTmCrTdIDPg9/m/4++MoJ9QvFavvq+7LP+U4L2aCCO/k1v9gqjxCgbMtPtWKE2s89e4M7suGRg2nVQjlO0AgPQCMepgqu386qqTrouuYsPstkp0dc567rCZyxIeG9NBz9e2m3xMzK+HKLzTejiSt90dnQU5KTMDtJvPXJArXy3pMNKz3K/OwwOHY86V9aIinc1M62SwBefZ4JiT74XD7BhM07Z/fkVWeSCDXtMERZ/m4H0LXUCJzSBp2cWx5VbGUDRC4oS3PdsUOTSV29JCokjMJiunTRgxqX3KsURDiOuYJKz0C7TnDYDAiP7GBRXG3J4lCmRzbOyxCEln52fj4FbvMMKWZ4tI0W5i7Hn7P6Xh+HnNXefZFplW8R0oIsih92Bra10VgXlBY/a3+P4BqCYAJUfMsDO7ZnNNHp0tvqNUuIvjcGVH6BlEfFGeHBAhUGz6FMp2IN8N3+udksfNZ+iYZmoAF/Mjiv61I7aRb9Qpc8eiDByBa1oJNuclEZpZDWKbHRL4yhzZewTCW5J0ifkfdUjxqyRc2F8iVirgjENDLyxUGj7EuUxGeiBBqwQED/+YnBkV1sdG8YiiEAHPisSG584tuTuLwnZk58X7/8="
+    on_success: always
+    on_failure: always
+    rooms:
+      secure: "gKn4kXGrxRC0+ztZAgcygXV0D90CQXIUTCyP6OPFNYq04CCf2yiH47XoTnc3L8y/Wz1gVj1y/Srk5/ZtiI+sVkyihqRnGFFLcqGoGFCumtBdbcRLw4tL7eMHSsuDBcaoByIWIPIJobhaDKiU3bKdCgE+Zk3eA1lyehWZkU/K+8tHY2Pa2u9UfvEgjNE8zHpc+LmjmGfrRPdn2n1X9djDGQYO7V821DCdtDIpMHrqIiQ8b010d+dlv8IBdT+/hJeQzV/g8Ip+IxepEK5YlKGlwhMaZrXI3PcA5rORS6m+9KW1OvK1F/xg3p13rKoETEdPU0cuGf7SRlXY3PjHeKTDsF2Ltu9S2zJ+hfun0QAdNaSfIKQh/NPyzfb5dJ1KKV0SSNIrVGrFW8eyoTyHtCufUn+6pgJrl95Z5nSI+b9cgsIysLvFnWHQeoFqzx5gt0tjVPmf0LwsRf2MMBV4idkBZXdRvG4HRXcQ72vclmXyNaG+LuZ2eCSymF5jduGi90TlKkBmlP+ye9XHoSyrlm1+0ucnOT/sxDSYp3IT8aeHqXu03XYTZsv0oQcVlwWZCp1yPtqZy+BXx0gRj5Nv9JsxvzZHfScSJeqxWd0swh9veAPEfumsBfEkqTVTQUdI1UrksGQY2ZTItlbpB9twCNqAuNyFPsExMwn2ttF/3e2P0V4="
