@@ -13,6 +13,7 @@ use Ixocreate\Application\Service\ServiceManagerConfig;
 use Ixocreate\Application\Service\ServiceManagerConfigurator;
 use Ixocreate\Entity\Exception\InvalidTypeException;
 use Ixocreate\Entity\Exception\ServiceNotCreatedException;
+use Ixocreate\Entity\Exception\ServiceNotFoundException;
 use Ixocreate\Entity\Type\Type;
 use Ixocreate\Misc\Entity\MockType;
 use Ixocreate\ServiceManager\Factory\AutowireFactory;
@@ -94,7 +95,7 @@ class TypeTest extends TestCase
     {
         Type::initialize($this->subManager);
 
-        $this->expectException(ServiceNotCreatedException::class);
+        $this->expectException(ServiceNotFoundException::class);
         Type::create("noreply@example.com", \DateTime::class);
     }
 }

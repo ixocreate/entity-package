@@ -11,6 +11,7 @@ namespace Ixocreate\Entity\Type;
 
 use Ixocreate\Entity\Exception\InvalidTypeException;
 use Ixocreate\Entity\Exception\ServiceNotCreatedException;
+use Ixocreate\Entity\Exception\ServiceNotFoundException;
 use Ixocreate\Entity\Type\Convert\Convert;
 use Ixocreate\ServiceManager\SubManager\SubManagerInterface;
 
@@ -114,7 +115,7 @@ final class Type
         }
 
         if (!$this->subManager->has($type)) {
-            throw new ServiceNotCreatedException(\sprintf("Can't find type '%s'", $type));
+            throw new ServiceNotFoundException(\sprintf("Can't find type '%s'", $type));
         }
 
         /** @var \Ixocreate\Type\TypeInterface $typeObject */
