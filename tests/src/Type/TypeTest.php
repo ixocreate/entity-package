@@ -76,7 +76,6 @@ class TypeTest extends TestCase
         $this->assertInstanceOf(MockType::class, $email);
         $this->assertSame("noreply@example.com", $email->getValue());
 
-
         $email1 = new MockType("noreply@example.com");
         $email1Check = Type::create($email1, MockType::class);
         $this->assertSame($email1, $email1Check);
@@ -97,15 +96,5 @@ class TypeTest extends TestCase
 
         $this->expectException(ServiceNotCreatedException::class);
         Type::create("noreply@example.com", \DateTime::class);
-    }
-
-    /**
-     * @runInSeparateProcess
-     */
-    public function testAlreadyInitialized()
-    {
-        $this->expectException(ServiceNotCreatedException::class);
-        Type::initialize($this->subManager);
-        Type::initialize($this->subManager);
     }
 }

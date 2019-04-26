@@ -39,10 +39,6 @@ final class Type
      */
     public static function initialize(SubManagerInterface $subManager = null)
     {
-        if (self::$type instanceof Type) {
-            throw new ServiceNotCreatedException(\sprintf("'%s' already initialized", Type::class));
-        }
-
         self::$type = new Type($subManager);
     }
 
