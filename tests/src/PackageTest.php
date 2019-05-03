@@ -35,6 +35,6 @@ class PackageTest extends TestCase
         $this->assertNull($package->getConfigDirectory());
         $this->assertNull($package->getConfigProvider());
         $this->assertNull($package->getDependencies());
-        $this->assertDirectoryExists($package->getBootstrapDirectory());
+        $this->assertNull($package->getBootstrapDirectory());
     }
 }

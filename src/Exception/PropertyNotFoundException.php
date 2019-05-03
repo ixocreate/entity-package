@@ -9,8 +9,6 @@ declare(strict_types=1);
 
 namespace Ixocreate\Entity\Exception;
 
-use Psr\Container\NotFoundExceptionInterface;
-
-class ServiceNotFoundException extends \InvalidArgumentException implements NotFoundExceptionInterface
+class PropertyNotFoundException extends \InvalidArgumentException
 {
 }
