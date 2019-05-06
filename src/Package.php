@@ -12,9 +12,7 @@ namespace Ixocreate\Entity;
 use Ixocreate\Application\Configurator\ConfiguratorRegistryInterface;
 use Ixocreate\Application\Package\PackageInterface;
 use Ixocreate\Application\Service\ServiceRegistryInterface;
-use Ixocreate\Entity\Type\Type;
 use Ixocreate\ServiceManager\ServiceManagerInterface;
-use Ixocreate\Type\TypeSubManager;
 
 final class Package implements PackageInterface
 {
@@ -53,7 +51,6 @@ final class Package implements PackageInterface
      */
     public function boot(ServiceManagerInterface $serviceManager): void
     {
-        Type::initialize($serviceManager->get(TypeSubManager::class));
     }
 
     /**
@@ -61,7 +58,7 @@ final class Package implements PackageInterface
      */
     public function getBootstrapDirectory(): ?string
     {
-        return __DIR__ . '/../bootstrap';
+        return null;
     }
 
     /**

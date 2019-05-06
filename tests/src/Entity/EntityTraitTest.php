@@ -9,13 +9,13 @@ declare(strict_types=1);
 
 namespace Ixocreate\Test\Entity\Entity;
 
-use Ixocreate\Type\TypeInterface;
 use Ixocreate\Entity\Definition;
 use Ixocreate\Entity\DefinitionCollection;
 use Ixocreate\Entity\EntityInterface;
 use Ixocreate\Entity\EntityTrait;
-use Ixocreate\Entity\Exception\EmptyException;
 use Ixocreate\Entity\Exception\InvalidPropertyException;
+use Ixocreate\Entity\Exception\PropertyNotFoundException;
+use Ixocreate\Schema\Type\TypeInterface;
 use PHPUnit\Framework\TestCase;
 
 class EntityTraitTest extends TestCase
@@ -78,7 +78,7 @@ class EntityTraitTest extends TestCase
 
     public function testEmptyException()
     {
-        $this->expectException(EmptyException::class);
+        $this->expectException(PropertyNotFoundException::class);
 
         new class([]) implements EntityInterface {
             use EntityTrait;

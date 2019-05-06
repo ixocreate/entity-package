@@ -9,6 +9,6 @@ declare(strict_types=1);
 
 namespace Ixocreate\Entity\Exception;
 
-class ServiceNotCreatedException extends \InvalidArgumentException
+class PropertyNotFoundException extends \InvalidArgumentException
 {
 }

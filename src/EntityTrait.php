@@ -9,10 +9,10 @@ declare(strict_types=1);
 
 namespace Ixocreate\Entity;
 
-use Ixocreate\Entity\Exception\EmptyException;
 use Ixocreate\Entity\Exception\InvalidPropertyException;
-use Ixocreate\Entity\Exception\InvalidTypeException;
-use Ixocreate\Entity\Type\Type;
+use Ixocreate\Entity\Exception\PropertyNotFoundException;
+use Ixocreate\Schema\Type\Exception\InvalidTypeException;
+use Ixocreate\Schema\Type\Type;
 
 trait EntityTrait
 {
@@ -85,7 +85,7 @@ trait EntityTrait
                 continue;
             }
 
-            throw new EmptyException(\sprintf("Property '%s' not set in '%s'", $definition->getName(), \get_class($this)));
+            throw new PropertyNotFoundException(\sprintf("Property '%s' not found in '%s'", $definition->getName(), \get_class($this)));
         }
     }
 
