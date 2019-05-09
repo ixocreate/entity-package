@@ -40,6 +40,6 @@ final class EntityCollection extends AbstractCollection
             $items = $items->indexBy($indexBy);
         }
 
-        parent::__construct($items);
+        parent::__construct($items->toArray());
     }
 }
