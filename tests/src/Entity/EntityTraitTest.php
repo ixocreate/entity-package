@@ -19,12 +19,9 @@ use Ixocreate\Schema\Builder\BuilderInterface;
 use Ixocreate\Schema\Element\ColorElement;
 use Ixocreate\Schema\Element\TextElement;
 use Ixocreate\Schema\Type\ColorType;
-use Ixocreate\Schema\Type\DateType;
-use Ixocreate\Schema\Type\SchemaType;
 use Ixocreate\Schema\Type\Type;
 use Ixocreate\Schema\Type\TypeInterface;
 use Ixocreate\ServiceManager\Exception\ServiceNotFoundException;
-use Ixocreate\ServiceManager\ServiceManagerInterface;
 use Ixocreate\ServiceManager\SubManager\SubManagerInterface;
 use PHPUnit\Framework\MockObject\MockBuilder;
 use PHPUnit\Framework\TestCase;
@@ -91,7 +88,7 @@ class EntityTraitTest extends TestCase
             ->disableArgumentCloning()
             ->disallowMockingUnknownTypes()
             ->getMock();
-        $container->method('get')->willReturnCallback(function ($requestedName) use ($typesToRegister){
+        $container->method('get')->willReturnCallback(function ($requestedName) use ($typesToRegister) {
             if (\array_key_exists($requestedName, $typesToRegister)) {
                 return $typesToRegister[$requestedName];
             }
@@ -99,7 +96,7 @@ class EntityTraitTest extends TestCase
             throw new ServiceNotFoundException('Type not found');
         });
 
-        $container->method('has')->willReturnCallback(function ($requestedName) use ($typesToRegister){
+        $container->method('has')->willReturnCallback(function ($requestedName) use ($typesToRegister) {
             if (\array_key_exists($requestedName, $typesToRegister)) {
                 return true;
             }
@@ -144,7 +141,7 @@ class EntityTraitTest extends TestCase
                     new Definition("name", TypeInterface::TYPE_STRING, false),
                     new Definition("type", TypeInterface::TYPE_INT, true),
                     new Definition("category", TypeInterface::TYPE_INT, false, true, true, 1),
-                    new Definition('color', ColorType::serviceName(), false, true)
+                    new Definition('color', ColorType::serviceName(), false, true),
                 ]);
             }
         };
@@ -178,8 +175,6 @@ class EntityTraitTest extends TestCase
         $this->assertInstanceOf(TextElement::class, $schema->get('type'));
         $this->assertInstanceOf(TextElement::class, $schema->get('category'));
         $this->assertInstanceOf(ColorElement::class, $schema->get('color'));
-
-
     }
 
     public function testInvalidPropertyException()
