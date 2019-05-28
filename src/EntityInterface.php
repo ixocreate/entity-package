@@ -1,7 +1,7 @@
 <?php
 /**
  * @link https://github.com/ixocreate
- * @copyright IXOCREATE GmbH
+ * @copyright IXOLIT GmbH
  * @license MIT License
  */
 
@@ -9,7 +9,9 @@ declare(strict_types=1);
 
 namespace Ixocreate\Entity;
 
-interface EntityInterface extends \JsonSerializable, \ArrayAccess
+use Ixocreate\Schema\SchemaAwareInterface;
+
+interface EntityInterface extends \JsonSerializable, \ArrayAccess, SchemaAwareInterface
 {
     /**
      * @return DefinitionCollection

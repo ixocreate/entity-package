@@ -1,7 +1,7 @@
 <?php
 /**
  * @link https://github.com/ixocreate
- * @copyright IXOCREATE GmbH
+ * @copyright IXOLIT GmbH
  * @license MIT License
  */
 
@@ -11,8 +11,15 @@ namespace Ixocreate\Entity;
 
 use Ixocreate\Entity\Exception\InvalidPropertyException;
 use Ixocreate\Entity\Exception\PropertyNotFoundException;
+use Ixocreate\Schema\Builder\BuilderInterface;
+use Ixocreate\Schema\Element\ElementInterface;
+use Ixocreate\Schema\Element\ElementProviderInterface;
+use Ixocreate\Schema\Element\TextElement;
+use Ixocreate\Schema\Schema;
+use Ixocreate\Schema\SchemaInterface;
 use Ixocreate\Schema\Type\Exception\InvalidTypeException;
 use Ixocreate\Schema\Type\Type;
+use Ixocreate\Schema\Type\TypeInterface;
 
 trait EntityTrait
 {
@@ -240,5 +247,49 @@ trait EntityTrait
     public function offsetUnset($offset)
     {
         throw new \BadMethodCallException(\sprintf("offsetUnset() is disabled in '%s'", \get_class($this)));
+    }
+
+    /**
+     * @param BuilderInterface $builder
+     * @return SchemaInterface
+     */
+    public function schema(BuilderInterface $builder): SchemaInterface
+    {
+        $schema = new Schema();
+        /** @var Definition $definition */
+        foreach (self::getDefinitions() as $definition) {
+            if (\in_array($definition->getName(), ['id', 'createdAt', 'updatedAt'])) {
+                continue;
+            }
+
+            if (!\in_array($definition->getType(), [
+                TypeInterface::TYPE_STRING,
+                TypeInterface::TYPE_ARRAY,
+                TypeInterface::TYPE_BOOL,
+                TypeInterface::TYPE_CALLABLE,
+                TypeInterface::TYPE_FLOAT,
+                TypeInterface::TYPE_INT,
+            ])) {
+                $type = Type::get($definition->getType());
+                if ($type instanceof ElementProviderInterface) {
+                    /** @var ElementInterface $element */
+                    $element = $type->provideElement($builder);
+                    $element = $element->withName($definition->getName())
+                        ->withLabel(\ucfirst($definition->getName()));
+
+                    $schema = $schema->withAddedElement($element);
+
+                    continue;
+                }
+            }
+
+            /** @var ElementInterface $element */
+            $element = $builder->create(TextElement::class, $definition->getName());
+            $element = $element->withLabel(\ucfirst($definition->getName()));
+
+            $schema = $schema->withAddedElement($element);
+        }
+
+        return $schema;
     }
 }

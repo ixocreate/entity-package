@@ -1,7 +1,7 @@
 <?php
 /**
  * @link https://github.com/ixocreate
- * @copyright IXOCREATE GmbH
+ * @copyright IXOLIT GmbH
  * @license MIT License
  */
 
@@ -40,6 +40,6 @@ final class EntityCollection extends AbstractCollection
             $items = $items->indexBy($indexBy);
         }
 
-        parent::__construct($items);
+        parent::__construct($items->toArray());
     }
 }

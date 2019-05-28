@@ -1,7 +1,7 @@
 # IXOCREATE Entity Package
 
 [![Build Status](https://travis-ci.com/ixocreate/entity-package.svg?branch=master)](https://travis-ci.com/ixocreate/entity-package)
-[![Coverage Status](https://coveralls.io/repos/github/ixocreate/entity-package/badge.svg?branch=develop)](https://coveralls.io/github/ixocreate/entity-package?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/ixocreate/entity-package/badge.svg?branch=master)](https://coveralls.io/github/ixocreate/entity-package?branch=master)
 [![Packagist](https://img.shields.io/packagist/v/ixocreate/entity-package.svg)](https://packagist.org/packages/ixocreate/entity-package)
 [![PHP Version](https://img.shields.io/packagist/php-v/ixocreate/entity-package.svg)](https://packagist.org/packages/ixocreate/entity-package)
 [![License](https://img.shields.io/github/license/ixocreate/entity-package.svg)](LICENSE)
