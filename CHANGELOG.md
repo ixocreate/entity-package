@@ -1,6 +1,9 @@
 # Release Notes
 
 ## [Unreleased](https://github.com/ixocreate/entity-package/compare/0.2.0...develop)
+
+### Added
+- Entity support for SchemaAwareInterface
 ### Fixed
 - Improved EntityCollection performance
 
