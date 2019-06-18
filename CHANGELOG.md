@@ -1,6 +1,8 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ixocreate/entity-package/compare/0.2.1...develop)
+## [Unreleased](https://github.com/ixocreate/entity-package/compare/0.2.2...develop)
+
+## [v0.2.2 (2019-06-18)](https://github.com/ixocreate/entity-package/compare/0.2.1...0.2.2)
 ### Changed
 - Performance improvement for DefinitionCollection
 
