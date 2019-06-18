@@ -35,6 +35,6 @@ final class DefinitionCollection extends AbstractCollection
             return $definition->getName();
         });
 
-        return parent::__construct($items);
+        return parent::__construct($items->toArray());
     }
 }
