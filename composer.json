@@ -20,7 +20,8 @@
     },
     "require-dev": {
         "ixocreate/coding-standard": "^2.0",
-        "ixocreate/test": "dev-develop"
+        "ixocreate/test": "dev-develop",
+        "phpbench/phpbench": "@dev"
     },
     "autoload": {
         "psr-4": {

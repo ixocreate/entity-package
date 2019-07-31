@@ -8,3 +8,5 @@
 /phpunit.xml.dist export-ignore
 /docs export-ignore
 /tests export-ignore
+/benchmarks export-ignore
+/phpbench.json export-ignore
