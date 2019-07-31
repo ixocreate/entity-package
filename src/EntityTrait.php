@@ -29,11 +29,17 @@ trait EntityTrait
     private static $definitionCollection;
 
     /**
+     * @var null|TypeInterface[]
+     */
+    private static $prototypes = null;
+
+    /**
      * EntityTrait constructor.
      * @param array $data
      */
     public function __construct(array $data)
     {
+        $this->prepare();
         $this->applyData($data);
     }
 
@@ -54,63 +60,94 @@ trait EntityTrait
      */
     abstract protected static function createDefinitions() : DefinitionCollection;
 
+    private function prepare(): void
+    {
+        if (self::$prototypes !== null) {
+            return;
+        }
+
+        self::$prototypes = [];
+        /** @var Definition $definition */
+        foreach (self::getDefinitions() as $definition) {
+            if (Type::isPhpType($definition->getType())) {
+                self::$prototypes[$definition->getName()] = [
+                    'type' => 'internal',
+                ];
+                continue;
+            }
+
+            self::$prototypes[$definition->getName()] = [
+                'type' => 'typeInterface',
+                'value' => Type::get($definition->getType()),
+            ];
+        }
+    }
+
     /**
      * @param array $data
      */
     private function applyData(array $data) : void
     {
-        $variables = [];
-
-        foreach ($data as $name => $value) {
-            if (!self::getDefinitions()->has($name)) {
-                throw new InvalidPropertyException(\sprintf("Invalid property '%s' in '%s'", $name, \get_class($this)));
-            }
-
-            $variables[] = $name;
-
-            try {
-                $this->setValue($name, $value);
-            } catch (InvalidTypeException $exception) {
-                throw new InvalidTypeException(\sprintf("Invalid value type for '%s' in '%s': ", $name, \get_class($this)) . $exception->getMessage());
-            }
-        }
-
         /** @var Definition $definition */
         foreach (self::getDefinitions() as $definition) {
-            if (\in_array($definition->getName(), $variables)) {
+            if (\array_key_exists($definition->getName(), $data)) {
+                try {
+                    $this->applyValue($definition, $data[$definition->getName()]);
+                } catch (InvalidTypeException $exception) {
+                    throw new InvalidTypeException(\sprintf("Invalid value type for '%s' in '%s': ", $definition->getName(), \get_class($this)) . $exception->getMessage());
+                }
+
+                unset($data[$definition->getName()]);
+
                 continue;
             }
 
-            $name = $definition->getName();
             if ($definition->hasDefault()) {
-                $this->setValue($name, $definition->getDefault());
+                $this->applyValue($definition, $definition->getDefault());
                 continue;
             }
 
             if ($definition->isNullAble()) {
-                $this->setValue($name, null);
+                $this->applyValue($definition, null);
                 continue;
             }
 
             throw new PropertyNotFoundException(\sprintf("Property '%s' not found in '%s'", $definition->getName(), \get_class($this)));
         }
+        if (!empty($data)) {
+            foreach (\array_keys($data) as $name) {
+                throw new InvalidPropertyException(\sprintf("Invalid property '%s' in '%s'", $name, \get_class($this)));
+            }
+        }
+    }
+
+    private function applyValue(Definition $definition, $value): void
+    {
+        $name = $definition->getName();
+
+        if ($value === null && $definition->isNullAble()) {
+            $this->{$name} = null;
+            return;
+        }
+
+        if (self::$prototypes[$name]['type'] === 'internal') {
+            Type::checkPhpType($value, $definition->getType());
+            $this->{$name} = $value;
+            return;
+        }
+
+        $this->{$name} = self::$prototypes[$name]['value']->create($value, $definition->getOptions());
     }
 
     /**
      * @param string $name
      * @param mixed $value
+     * @deprecated use applyValue
      */
     private function setValue(string $name, $value) : void
     {
-        if ($value === null && self::getDefinitions()->get($name)->isNullAble()) {
-            $this->{$name} = null;
-            return;
-        }
-        $this->{$name} = Type::create(
-            $value,
-            self::getDefinitions()->get($name)->getType(),
-            self::getDefinitions()->get($name)->getOptions()
-        );
+        $definition = self::getDefinitions()->get($name);
+        $this->applyValue($definition, $value);
     }
 
     /**
@@ -262,14 +299,7 @@ trait EntityTrait
                 continue;
             }
 
-            if (!\in_array($definition->getType(), [
-                TypeInterface::TYPE_STRING,
-                TypeInterface::TYPE_ARRAY,
-                TypeInterface::TYPE_BOOL,
-                TypeInterface::TYPE_CALLABLE,
-                TypeInterface::TYPE_FLOAT,
-                TypeInterface::TYPE_INT,
-            ])) {
+            if (!Type::isPhpType($definition->getType())) {
                 $type = Type::get($definition->getType());
                 if ($type instanceof ElementProviderInterface) {
                     /** @var ElementInterface $element */
