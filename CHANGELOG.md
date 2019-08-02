@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ixocreate/entity-package/compare/0.2.3...develop)
+## [Unreleased](https://github.com/ixocreate/entity-package/compare/0.2.4...develop)
+
+## [v0.2.4 (2019-08-02)](https://github.com/ixocreate/entity-package/compare/0.2.3...0.2.4)
+### Fixed
+- Setting types in entities
 
 ## [v0.2.3 (2019-07-31)](https://github.com/ixocreate/entity-package/compare/0.2.2...0.2.3)
 ### Changed
