@@ -136,7 +136,14 @@ trait EntityTrait
             return;
         }
 
-        $this->{$name} = self::$prototypes[$name]['value']->create($value, $definition->getOptions());
+        $typeObject = self::$prototypes[$name]['value'];
+
+        if ($value instanceof $typeObject) {
+            $this->{$name} = $value;
+            return;
+        }
+
+        $this->{$name} = $typeObject->create($value, $definition->getOptions());
     }
 
     /**
