@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ixocreate/entity-package/compare/0.2.4...develop)
+## [Unreleased](https://github.com/ixocreate/entity-package/compare/0.2.5...develop)
+
+## [v0.2.5 (2019-09-17)](https://github.com/ixocreate/entity-package/compare/0.2.4...0.2.5)
+### Fixed
+- fix overlap of iterator index from DefinitionCollection
 
 ## [v0.2.4 (2019-08-02)](https://github.com/ixocreate/entity-package/compare/0.2.3...0.2.4)
 ### Fixed
