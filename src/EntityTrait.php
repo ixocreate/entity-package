@@ -89,7 +89,7 @@ trait EntityTrait
     private function applyData(array $data) : void
     {
         /** @var Definition $definition */
-        foreach (self::getDefinitions() as $definition) {
+        foreach (self::getDefinitions()->toArray() as $definition) {
             if (\array_key_exists($definition->getName(), $data)) {
                 try {
                     $this->applyValue($definition, $data[$definition->getName()]);
