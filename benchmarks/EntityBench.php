@@ -5,7 +5,7 @@ namespace Ixocreate\Benchmark\Cms;
 
 use DateTime;
 use Ixocreate\Application\Service\ServiceManagerConfig;
-use Ixocreate\Application\Service\ServiceManagerConfigurator;
+use Ixocreate\Application\ServiceManager\ServiceManagerConfigurator;
 use Ixocreate\Schema\Type\DateTimeType;
 use Ixocreate\Schema\Type\Type;
 use Ixocreate\Schema\Type\TypeInterface;
