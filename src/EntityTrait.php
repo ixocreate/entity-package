@@ -112,7 +112,7 @@ trait EntityTrait
                 continue;
             }
 
-            throw new PropertyNotFoundException(\sprintf("Property '%s' not found in '%s'", $definition->getName(), \get_class($this)));
+            throw new PropertyNotFoundException(\sprintf("Invalid property '%s' in '%s'. Value must not be null", $definition->getName(), \get_class($this)));
         }
         if (!empty($data)) {
             foreach (\array_keys($data) as $name) {
@@ -125,9 +125,12 @@ trait EntityTrait
     {
         $name = $definition->getName();
 
-        if ($value === null && $definition->isNullAble()) {
-            $this->{$name} = null;
-            return;
+        if ($value === null) {
+            if ($definition->isNullAble()) {
+                $this->{$name} = null;
+                return;
+            }
+            throw new InvalidPropertyException(\sprintf("Invalid property '%s' in '%s'. Value must not be null", $name, \get_class($this)));
         }
 
         if (self::$prototypes[$name]['type'] === 'internal') {

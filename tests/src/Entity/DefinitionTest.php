@@ -40,4 +40,20 @@ class DefinitionTest extends TestCase
         $this->assertTrue($definition->isNullAble());
         $this->assertTrue($definition->isPublic());
     }
+
+    public function testDefaultCallback()
+    {
+        $definition = new Definition(
+            'testString',
+            'string',
+            true,
+            true,
+            true,
+            function () {
+                return 'testDefault';
+            }
+        );
+
+        $this->assertEquals('testDefault', $definition->getDefault());
+    }
 }
