@@ -19,6 +19,7 @@ use Ixocreate\Schema\Builder\BuilderInterface;
 use Ixocreate\Schema\Element\ColorElement;
 use Ixocreate\Schema\Element\TextElement;
 use Ixocreate\Schema\Type\ColorType;
+use Ixocreate\Schema\Type\Exception\InvalidTypeException;
 use Ixocreate\Schema\Type\Type;
 use Ixocreate\Schema\Type\TypeInterface;
 use Ixocreate\ServiceManager\Exception\ServiceNotFoundException;
@@ -68,6 +69,36 @@ class EntityTraitTest extends TestCase
 
         $newMock = $mock->with("name", "somethingelse");
         $this->assertSame("somethingelse", $newMock->name);
+    }
+
+    public function testInvalidType()
+    {
+        $this->expectException(InvalidTypeException::class);
+
+        $data = [
+            'name' => [],
+            'type' => 1,
+            'category' => 2,
+        ];
+
+        $mock = new class($data) implements EntityInterface {
+            use EntityTrait;
+
+            private $name;
+
+            private $type;
+
+            private $category;
+
+            protected static function createDefinitions() : DefinitionCollection
+            {
+                return new DefinitionCollection([
+                    new Definition("name", TypeInterface::TYPE_STRING, false),
+                    new Definition("type", TypeInterface::TYPE_INT, true),
+                    new Definition("category", TypeInterface::TYPE_INT, false, true, true, 1),
+                ]);
+            }
+        };
     }
 
     /**
@@ -191,6 +222,28 @@ class EntityTraitTest extends TestCase
         };
     }
 
+    public function testNotNullProperty()
+    {
+        $this->expectException(InvalidPropertyException::class);
+
+        $data = [
+            'name' => null,
+        ];
+
+        new class($data) implements EntityInterface {
+            use EntityTrait;
+
+            private $name;
+
+            protected static function createDefinitions() : DefinitionCollection
+            {
+                return new DefinitionCollection([
+                    new Definition('name', TypeInterface::TYPE_STRING, false),
+                ]);
+            }
+        };
+    }
+
     public function testEmptyException()
     {
         $this->expectException(PropertyNotFoundException::class);
@@ -271,5 +324,81 @@ class EntityTraitTest extends TestCase
         };
 
         $mock->with("test", "test");
+    }
+
+    public function testToPublicArray()
+    {
+        $data = [
+            'name' => 'testName',
+            'fieldPrivate' => 'topSecret',
+            'field2' => 'someValue',
+        ];
+
+        $entity = new class($data) implements EntityInterface {
+            use EntityTrait;
+
+            private $name;
+
+            private $fieldPrivate;
+
+            private $field2;
+
+            protected static function createDefinitions() : DefinitionCollection
+            {
+                return new DefinitionCollection([
+                    new Definition('name', TypeInterface::TYPE_STRING, false, true),
+                    new Definition('fieldPrivate', TypeInterface::TYPE_STRING, false, false),
+                    new Definition('field2', TypeInterface::TYPE_STRING, false, true),
+                ]);
+            }
+        };
+
+        unset($data['fieldPrivate']);
+
+        $this->assertEquals($data, $entity->toPublicArray());
+        $this->assertEquals($data, $entity->jsonSerialize());
+    }
+
+    public function testInvalidArrayAccess()
+    {
+        $this->expectException(InvalidPropertyException::class);
+
+        $entity = $this->getSimpleEntity();
+
+        $value = $entity['invalidProperty'];
+    }
+
+    public function testArrayAccessSet()
+    {
+        $this->expectException(\BadMethodCallException::class);
+
+        $entity = $this->getSimpleEntity();
+
+        $entity['name'] = 'newName';
+    }
+
+    public function testArrayAccessUnset()
+    {
+        $this->expectException(\BadMethodCallException::class);
+
+        $entity = $this->getSimpleEntity();
+
+        unset($entity['name']);
+    }
+
+    private function getSimpleEntity(): EntityInterface
+    {
+        return new class(['name' => 'someName']) implements EntityInterface {
+            use EntityTrait;
+
+            private $name;
+
+            protected static function createDefinitions() : DefinitionCollection
+            {
+                return new DefinitionCollection([
+                    new Definition('name', TypeInterface::TYPE_STRING, false),
+                ]);
+            }
+        };
     }
 }

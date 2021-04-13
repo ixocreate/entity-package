@@ -11,16 +11,18 @@
             "role": "Developer"
         }
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
-        "php": "^7.1",
-        "ixocreate/application": "^0.2",
-        "ixocreate/collection": "^0.1",
-        "ixocreate/schema-package": "^0.2",
-        "zendframework/zend-filter": "^2.7"
+        "php": "^7.2 || ^8.0",
+        "ixocreate/application": "^0.3.0",
+        "ixocreate/collection": "^0.2",
+        "ixocreate/schema-package": "^0.3.0",
+        "laminas/laminas-filter": "^2.7"
     },
     "require-dev": {
         "ixocreate/coding-standard": "^2.0",
-        "ixocreate/test": "dev-develop",
+        "ixocreate/test": "^0.2",
         "phpbench/phpbench": "@dev"
     },
     "autoload": {

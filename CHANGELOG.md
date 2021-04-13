@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/ixocreate/entity-package/compare/0.2.5...develop)
+## [Unreleased](https://github.com/ixocreate/entity-package/compare/0.3.0...develop)
+
+## [v0.3.0 (2021-01-21)](https://github.com/ixocreate/event-package/compare/0.2.5...0.3.0)
+### Update
+- Update to Application 0.3
 
 ## [v0.2.5 (2019-09-17)](https://github.com/ixocreate/entity-package/compare/0.2.4...0.2.5)
 ### Fixed

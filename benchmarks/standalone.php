@@ -1,7 +1,7 @@
 <?php
 
 use Ixocreate\Application\Service\ServiceManagerConfig;
-use Ixocreate\Application\Service\ServiceManagerConfigurator;
+use Ixocreate\Application\ServiceManager\ServiceManagerConfigurator;
 use Ixocreate\Benchmark\Cms\TestEntity;
 use Ixocreate\Benchmark\Cms\TypeFactory;
 use Ixocreate\Schema\Type\DateTimeType;
